@@ -5,8 +5,8 @@ android {
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.example.ryanfarrell362.onitama"
-        minSdkVersion 25
-        targetSdkVersion 25
+        minSdkVersion 23
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
