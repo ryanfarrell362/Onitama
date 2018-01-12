@@ -1,0 +1,29 @@
+Title Screen
+	- Play button
+	- Info Button
+	- About Button
+	- Settings Button
+	
+Info Screen
+	- Full instructions
+	- Multiple pages?
+	
+About Screen
+	- Info about me
+	
+Settings Screen
+	- Colours
+	- Volume
+	- Tap or drag
+	
+Play Screen
+	- Show Board
+	- Create cards
+	- Send Out Cards
+	- Place Pieces
+	- Choose Card and Highlight Spaces on Board when piece selected
+	- Move Piece according to said spaces
+	- Capture pieces
+	- Swap card with middle one
+	- Victory conditions
+	- Victory / Defeat Popup
