@@ -9,9 +9,7 @@
     <dimen name="button_width">150dp</dimen>
     <dimen name="button_height">75dp</dimen>
 
-    <dimen name="button_to_button_vertical_margin">4dp</dimen>
-
     <dimen name ="button_horizontal_margin">90dp</dimen>
-    <dimen name ="button_vertical_margin">85dp</dimen>
+    <dimen name ="button_vertical_margin">90dp</dimen>
     <dimen name="button_textsize">24dp</dimen>
 </resources>

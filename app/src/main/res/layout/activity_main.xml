@@ -34,7 +34,6 @@
     <Button
         android:id="@+id/info_button"
         android:layout_marginLeft="@dimen/button_horizontal_margin"
-        android:layout_marginTop="@dimen/button_to_button_vertical_margin"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
         android:text="INFO"
@@ -44,7 +43,6 @@
     <Button
     android:id="@+id/settings_button"
     android:layout_marginLeft="@dimen/button_horizontal_margin"
-    android:layout_marginTop="@dimen/button_to_button_vertical_margin"
     android:layout_width="@dimen/button_width"
     android:layout_height="@dimen/button_height"
     android:text="SETTINGS"
@@ -54,7 +52,6 @@
     <Button
         android:id="@+id/about_button"
         android:layout_marginLeft="@dimen/button_horizontal_margin"
-        android:layout_marginTop="@dimen/button_to_button_vertical_margin"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
         android:text="ABOUT"
