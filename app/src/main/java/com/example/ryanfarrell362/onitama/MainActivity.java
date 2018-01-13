@@ -18,4 +18,16 @@ public class MainActivity extends AppCompatActivity {
         Intent goToSettings = new Intent (this, SettingsActivity.class);
         startActivity (goToSettings);
     }
+
+    public void info (View view)
+    {
+        Intent goToInfo = new Intent (this, InfoActivity.class);
+        startActivity (goToInfo);
+    }
+
+    public void about (View view)
+    {
+        Intent goToAbout = new Intent (this, AboutActivity.class);
+        startActivity (goToAbout);
+    }
 }

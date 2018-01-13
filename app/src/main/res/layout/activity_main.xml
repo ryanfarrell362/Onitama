@@ -38,7 +38,8 @@
         android:layout_height="@dimen/button_height"
         android:text="INFO"
         android:textSize="@dimen/button_textsize"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="info"/>
 
     <Button
         android:id="@+id/settings_button"
@@ -57,5 +58,6 @@
         android:layout_height="@dimen/button_height"
         android:text="ABOUT"
         android:textSize="@dimen/button_textsize"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="about"/>
 </LinearLayout>
