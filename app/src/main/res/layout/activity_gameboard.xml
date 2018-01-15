@@ -229,7 +229,7 @@
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
                 android:layout_marginLeft="@dimen/profile_picture_margin_left"
-                android:src="@mipmap/RedPanda"/>
+                android:src="@mipmap/redpanda"/>
 
             <ImageButton
                 android:id="@+id/middleCard"
@@ -242,7 +242,7 @@
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
                 android:layout_marginLeft="@dimen/profile_picture_margin_left"
-                android:src="@mipmap/Seagull"/>
+                android:src="@mipmap/seagull"/>
 
         </LinearLayout>
 
