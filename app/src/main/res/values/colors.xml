@@ -5,8 +5,9 @@
     <color name="colorPrimaryDark">#004ba0</color>
     <color name="colorAccent">#bada56</color>
 
-    <color name="blue_pieces">#2196f3</color>
+    <color name="blue_pieces">#187dd0</color>
     <color name="red_pieces">#f44336</color>
+    <color name="tile_color">#8CDD81</color>
 
-    <color name="background_color">#000000</color>
+    <color name="background_color">#c99e6e</color>
 </resources>

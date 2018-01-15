@@ -21,7 +21,8 @@
     <dimen name="small_card_width">80dp</dimen>
 
     <dimen name="board_size">250dp</dimen>
-    <dimen name="board_tile_width">50dp</dimen>
+    <dimen name="board_tile_width">45dp</dimen>
+    <dimen name="tile_margin">1dp</dimen>
 
     <dimen name="profile_picture_size">62dp</dimen>
     <dimen name="middle_card_margin_left">0dp</dimen>
