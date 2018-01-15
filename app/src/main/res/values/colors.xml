@@ -7,4 +7,6 @@
 
     <color name="blue_pieces">#2196f3</color>
     <color name="red_pieces">#f44336</color>
+
+    <color name="background_color">#000000</color>
 </resources>
