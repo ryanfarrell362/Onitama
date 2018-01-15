@@ -48,7 +48,9 @@
             android:layout_row="0"
             android:layout_column="0"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/redstudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/A2"
@@ -57,7 +59,9 @@
             android:layout_row="0"
             android:layout_column="1"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/redstudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/A3"
@@ -66,7 +70,9 @@
             android:layout_row="0"
             android:layout_column="2"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/redmaster"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/A4"
@@ -75,7 +81,9 @@
             android:layout_row="0"
             android:layout_column="3"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/redstudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/A5"
@@ -84,7 +92,9 @@
             android:layout_row="0"
             android:layout_column="4"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/redstudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/B1"
@@ -228,7 +238,9 @@
             android:layout_row="4"
             android:layout_column="0"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/bluestudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/E2"
@@ -237,7 +249,9 @@
             android:layout_row="4"
             android:layout_column="1"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/bluestudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/E3"
@@ -246,7 +260,9 @@
             android:layout_row="4"
             android:layout_column="2"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/bluemaster"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/E4"
@@ -255,7 +271,9 @@
             android:layout_row="4"
             android:layout_column="3"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/bluestudent"
+            android:scaleType="centerCrop"/>
 
         <ImageButton
             android:id="@+id/E5"
@@ -264,7 +282,9 @@
             android:layout_row="4"
             android:layout_column="4"
             android:background="@color/tile_color"
-            android:layout_margin="@dimen/tile_margin"/>
+            android:layout_margin="@dimen/tile_margin"
+            android:src="@mipmap/bluestudent"
+            android:scaleType="centerCrop"/>
 
     </GridLayout>
 
