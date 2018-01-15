@@ -13,6 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void game (View view)
+    {
+        Intent goToGame = new Intent (this, GameboardActivity.class);
+        startActivity (goToGame);
+    }
+
     public void settings (View view)
     {
         Intent goToSettings = new Intent (this, SettingsActivity.class);

@@ -29,7 +29,8 @@
         android:layout_height="@dimen/button_height"
         android:text="PLAY"
         android:textSize="@dimen/button_textsize"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:onClick="game"/>
 
     <Button
         android:id="@+id/info_button"
