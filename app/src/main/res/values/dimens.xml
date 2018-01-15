@@ -24,7 +24,7 @@
     <dimen name="board_tile_width">50dp</dimen>
 
     <dimen name="profile_picture_size">62dp</dimen>
-    <dimen name="middle_card_margin_left">10dp</dimen>
+    <dimen name="middle_card_margin_left">5dp</dimen>
     <dimen name="profile_picture_margin_left">15dp</dimen>
 
     <dimen name="board_and_cards_space">40dp</dimen>
