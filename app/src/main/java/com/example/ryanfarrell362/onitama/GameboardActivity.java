@@ -11,10 +11,7 @@ public class GameboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameboard);
-    }
 
-    public static void main (String [] args)
-    {
         ArrayList cards = new ArrayList ();
         cardInitialization (cards);
     }
