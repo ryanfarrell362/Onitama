@@ -4,13 +4,15 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="title_textsize">42dp</dimen>
+    <dimen name="title_image_width">325dp</dimen>
+    <dimen name="title_image_height">125dp</dimen>
 
     <!-- Button Spacings -->
     <dimen name="button_width">150dp</dimen>
     <dimen name="button_height">75dp</dimen>
 
     <dimen name ="button_horizontal_margin">90dp</dimen>
-    <dimen name ="button_vertical_margin">90dp</dimen>
+    <dimen name ="button_vertical_margin">60dp</dimen>
     <dimen name="button_textsize">24dp</dimen>
 
     <!-- Gameboard Values -->

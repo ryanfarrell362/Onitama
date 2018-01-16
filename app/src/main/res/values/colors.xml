@@ -7,7 +7,7 @@
 
     <color name="blue_pieces">#187dd0</color>
     <color name="red_pieces">#f44336</color>
-    <color name="tile_color">#8CDD81</color>
+    <color name="tile_color">#af8452</color>
 
-    <color name="background_color">#c99e6e</color>
+    <color name="background_color">#ddb689</color>
 </resources>
