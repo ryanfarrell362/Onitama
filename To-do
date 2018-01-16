@@ -1,8 +1,8 @@
-Title Screen
-	- Play button
-	- Info Button
-	- About Button
-	- Settings Button
+Title Screen (DONE)
+	- Play button (DONE)
+	- Info Button (DONE)
+	- About Button (DONE)
+	- Settings Button (DONE)
 	
 Info Screen
 	- Full instructions
@@ -12,13 +12,16 @@ About Screen
 	- Info about me
 	
 Settings Screen
-	- Colours
 	- Volume
 	- Tap or drag
 	
+Customization Screen
+	- Profile Picture
+	- Username?
+	
 Play Screen
-	- Show Board
-	- Create cards
+	- Show Board (DONE)
+	- Create cards (DONE)
 	- Send Out Cards
 	- Place Pieces
 	- Choose Card and Highlight Spaces on Board when piece selected
