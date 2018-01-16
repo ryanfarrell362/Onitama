@@ -15,8 +15,12 @@ public class GameboardActivity extends AppCompatActivity {
 
     public static void main (String [] args)
     {
-        // Card Declarations
+        ArrayList cards = new ArrayList ();
+        cardInitialization (cards);
+    }
 
+    public static ArrayList cardInitialization (ArrayList cards)
+    {
         int [] tempArray1X = {-2, -1, 1};
         int [] tempArray1Y = {0, 1, -1};
         Card frog = new Card ("Frog", tempArray1X, tempArray1Y, 'r');
@@ -81,7 +85,6 @@ public class GameboardActivity extends AppCompatActivity {
         int [] tempArray16Y = {0, 1, -1};
         Card horse = new Card ("Horse", tempArray16X, tempArray16Y, 'r');
 
-        ArrayList cards = new ArrayList();
         cards.add (frog);
         cards.add (goose);
         cards.add (rabbit);
@@ -98,5 +101,7 @@ public class GameboardActivity extends AppCompatActivity {
         cards.add (eel);
         cards.add (boar);
         cards.add (horse);
+
+        return cards;
     }
 }

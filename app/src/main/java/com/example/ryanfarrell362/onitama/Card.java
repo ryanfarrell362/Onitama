@@ -20,17 +20,17 @@ public class Card
         return this.name;
     }
 
-    public int [] xMoves ()
+    public int [] getXMoves ()
     {
         return this.xMoves;
     }
 
-    public int [] yMoves ()
+    public int [] getYMoves ()
     {
         return this.yMoves;
     }
 
-    public char colour ()
+    public char getColour ()
     {
         return this.colour;
     }
