@@ -16,47 +16,45 @@ public class GameboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gameboard);
 
         ArrayList<Card> cards = new ArrayList<Card> ();
+        Card [] gameCards = new Card [5];
 
         cardInitialization (cards);
-        cardDealer (cards);
+        cardDealer (cards, gameCards);
     }
 
-    public void cardDealer(ArrayList cards)
+    public void cardDealer(ArrayList cards, Card [] gameCards)
     {
+        int arrayValue = 0;
+
         ImageButton player1Card1 = (ImageButton) findViewById (R.id.player1Card1);
-        cardAssigner (cards, player1Card1);
+        cardAssigner (cards, player1Card1, gameCards, arrayValue);
+        arrayValue ++;
 
         ImageButton player1Card2 = (ImageButton) findViewById (R.id.player1Card2);
-        cardAssigner (cards, player1Card2);
+        cardAssigner (cards, player1Card2, gameCards, arrayValue);
+        arrayValue ++;
 
         ImageButton player2Card1 = (ImageButton) findViewById (R.id.player2Card1);
-        cardAssigner (cards, player2Card1);
+        cardAssigner (cards, player2Card1, gameCards, arrayValue);
+        arrayValue ++;
 
         ImageButton player2Card2 = (ImageButton) findViewById (R.id.player2Card2);
-        cardAssigner (cards, player2Card2);
+        cardAssigner (cards, player2Card2, gameCards, arrayValue);
+        arrayValue ++;
 
         ImageView middleCard = (ImageView) findViewById (R.id.middleCard);
-        cardAssigner (cards, middleCard);
-
-        Random numGen = new Random ();
-
-        int randNum = numGen.nextInt (cards.size ());
-        Card chosenCard = (Card) cards.get (randNum);
-        String name = chosenCard.getName ();
-        int resID = getResources ().getIdentifier (name, "mipmap", "package.com.example.ryanfarrell362.onitama");
-
-        player1Card1.setImageResource(resID);
-        cards.remove (randNum);
+        cardAssigner (cards, middleCard, gameCards, arrayValue);
     }
 
-    public ArrayList cardAssigner (ArrayList cards, ImageButton card)
+    public ArrayList cardAssigner (ArrayList cards, ImageButton card, Card [] gameCards, int arrayValue)
     {
         Random numGen = new Random ();
 
         int randNum = numGen.nextInt (cards.size ());
         Card chosenCard = (Card) cards.get (randNum);
+        gameCards [arrayValue] = chosenCard;
         String name = chosenCard.getName ();
-        int resID = getResources ().getIdentifier (name, "mipmap", "package.com.example.ryanfarrell362.onitama");
+        int resID = getResources ().getIdentifier (name.toLowerCase(), "mipmap", getPackageName());
 
         card.setImageResource(resID);
         cards.remove (randNum);
@@ -64,14 +62,15 @@ public class GameboardActivity extends AppCompatActivity {
         return cards;
     }
 
-    public void cardAssigner (ArrayList cards, ImageView card)
+    public void cardAssigner (ArrayList cards, ImageView card, Card [] gameCards, int arrayValue)
     {
         Random numGen = new Random ();
 
         int randNum = numGen.nextInt (cards.size ());
         Card chosenCard = (Card) cards.get (randNum);
+        gameCards [arrayValue] = chosenCard;
         String name = chosenCard.getName ();
-        int resID = getResources ().getIdentifier (name, "mipmap", "package.com.example.ryanfarrell362.onitama");
+        int resID = getResources ().getIdentifier (name.toLowerCase(), "mipmap", getPackageName());
 
         card.setImageResource(resID);
     }
