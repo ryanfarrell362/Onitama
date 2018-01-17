@@ -7,6 +7,7 @@ public class Card
     private int [] yMoves;
     private char colour;
 
+
     public Card (String name, int [] xMoves, int [] yMoves, char colour)
     {
         this.name = name;

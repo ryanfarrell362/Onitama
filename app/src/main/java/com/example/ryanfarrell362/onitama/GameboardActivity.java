@@ -2,8 +2,11 @@ package com.example.ryanfarrell362.onitama;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameboardActivity extends AppCompatActivity {
 
@@ -12,8 +15,65 @@ public class GameboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameboard);
 
-        ArrayList cards = new ArrayList ();
+        ArrayList<Card> cards = new ArrayList<Card> ();
+
         cardInitialization (cards);
+        cardDealer (cards);
+    }
+
+    public void cardDealer(ArrayList cards)
+    {
+        ImageButton player1Card1 = (ImageButton) findViewById (R.id.player1Card1);
+        cardAssigner (cards, player1Card1);
+
+        ImageButton player1Card2 = (ImageButton) findViewById (R.id.player1Card2);
+        cardAssigner (cards, player1Card2);
+
+        ImageButton player2Card1 = (ImageButton) findViewById (R.id.player2Card1);
+        cardAssigner (cards, player2Card1);
+
+        ImageButton player2Card2 = (ImageButton) findViewById (R.id.player2Card2);
+        cardAssigner (cards, player2Card2);
+
+        ImageView middleCard = (ImageView) findViewById (R.id.middleCard);
+        cardAssigner (cards, middleCard);
+
+        Random numGen = new Random ();
+
+        int randNum = numGen.nextInt (cards.size ());
+        Card chosenCard = (Card) cards.get (randNum);
+        String name = chosenCard.getName ();
+        int resID = getResources ().getIdentifier (name, "mipmap", "package.com.example.ryanfarrell362.onitama");
+
+        player1Card1.setImageResource(resID);
+        cards.remove (randNum);
+    }
+
+    public ArrayList cardAssigner (ArrayList cards, ImageButton card)
+    {
+        Random numGen = new Random ();
+
+        int randNum = numGen.nextInt (cards.size ());
+        Card chosenCard = (Card) cards.get (randNum);
+        String name = chosenCard.getName ();
+        int resID = getResources ().getIdentifier (name, "mipmap", "package.com.example.ryanfarrell362.onitama");
+
+        card.setImageResource(resID);
+        cards.remove (randNum);
+
+        return cards;
+    }
+
+    public void cardAssigner (ArrayList cards, ImageView card)
+    {
+        Random numGen = new Random ();
+
+        int randNum = numGen.nextInt (cards.size ());
+        Card chosenCard = (Card) cards.get (randNum);
+        String name = chosenCard.getName ();
+        int resID = getResources ().getIdentifier (name, "mipmap", "package.com.example.ryanfarrell362.onitama");
+
+        card.setImageResource(resID);
     }
 
     public static ArrayList cardInitialization (ArrayList cards)
