@@ -16,11 +16,12 @@
     <dimen name="button_textsize">24dp</dimen>
 
     <!-- Gameboard Values -->
-    <dimen name="card_width">165dp</dimen>
-    <dimen name="card_height">100dp</dimen>
+    <dimen name="card_width">157dp</dimen>
+    <dimen name="card_height">95dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
 
-    <dimen name="small_card_height">125dp</dimen>
-    <dimen name="small_card_width">80dp</dimen>
+    <dimen name="small_card_height">80dp</dimen>
+    <dimen name="small_card_width">132dp</dimen>
 
     <dimen name="board_size">250dp</dimen>
     <dimen name="board_tile_width">45dp</dimen>
