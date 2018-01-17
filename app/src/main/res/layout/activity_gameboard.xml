@@ -19,6 +19,7 @@
             android:id="@+id/player1Card1"
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
+            android:rotation="180"
             android:background="@mipmap/frog"
             android:scaleType="fitXY"/>
 
@@ -27,6 +28,7 @@
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
             android:layout_marginLeft="@dimen/card_margin"
+            android:rotation="180"
             android:background="@mipmap/rooster"
             android:scaleType="fitXY"/>
 
@@ -305,6 +307,7 @@
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
                 android:layout_marginLeft="@dimen/profile_picture_margin_left"
+                android:rotation="180"
                 android:src="@mipmap/redpanda" />
 
             <ImageView
