@@ -307,6 +307,8 @@
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
                 android:layout_marginLeft="@dimen/profile_picture_margin_left"
+                android:background=""
+                android:padding="@dimen/profile_picture_border_padding"
                 android:rotation="180"
                 android:src="@mipmap/redpanda" />
 
@@ -325,6 +327,8 @@
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
                 android:layout_marginLeft="@dimen/profile_picture_margin_left"
+                android:background=""
+                android:padding="@dimen/profile_picture_border_padding"
                 android:src="@mipmap/seagull" />
 
         </LinearLayout>

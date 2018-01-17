@@ -11,4 +11,5 @@
     <color name="tile_color">#af8452</color>
 
     <color name="background_color">#ddb689</color>
+    <color name="border">#f4f142</color>
 </resources>
