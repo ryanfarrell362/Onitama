@@ -20,16 +20,17 @@
     <dimen name="card_height">95dp</dimen>
     <dimen name="card_margin">10dp</dimen>
 
-    <dimen name="small_card_height">80dp</dimen>
-    <dimen name="small_card_width">132dp</dimen>
+    <dimen name="small_card_height">65dp</dimen>
+    <dimen name="small_card_width">105dp</dimen>
 
-    <dimen name="board_size">250dp</dimen>
+    <dimen name="board_size">235dp</dimen>
     <dimen name="board_tile_width">45dp</dimen>
     <dimen name="tile_margin">1dp</dimen>
 
-    <dimen name="profile_picture_size">55dp</dimen>
-    <dimen name="middle_card_margin_left">0dp</dimen>
-    <dimen name="profile_picture_margin_left">13dp</dimen>
+    <dimen name="profile_picture_size">60dp</dimen>
+    <dimen name="middle_card_margin_right">100dp</dimen>
+    <dimen name="middle_card_margin_top">25dp</dimen>
+    <dimen name="profile_picture_margin_left">23dp</dimen>
 
     <dimen name="board_and_cards_space">40dp</dimen>
 

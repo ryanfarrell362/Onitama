@@ -305,15 +305,16 @@
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
                 android:layout_marginLeft="@dimen/profile_picture_margin_left"
-                android:src="@mipmap/redpanda"/>
+                android:src="@mipmap/redpanda" />
 
             <ImageView
                 android:id="@+id/middleCard"
                 android:layout_width="@dimen/small_card_width"
                 android:layout_height="@dimen/small_card_height"
-                android:layout_marginLeft="@dimen/middle_card_margin_left"
+                android:layout_marginTop="@dimen/middle_card_margin_top"
+                android:layout_marginBottom="@dimen/middle_card_margin_top"
                 android:rotation="270"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ox" />
 
             <ImageView
