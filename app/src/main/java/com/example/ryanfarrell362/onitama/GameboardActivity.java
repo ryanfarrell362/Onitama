@@ -23,7 +23,7 @@ public class GameboardActivity extends AppCompatActivity {
         // Game Initialization
         cardInitialization (cards); // Setup cards
         cardDealer (cards, gameCards); // Deal out cards
-        firstTurn (gameCards, turn); // Determine who goes first
+        turn = firstTurn (gameCards, turn); // Determine who goes first
 
         // Game Start
         assignTurn (turn); // Assign who goes
@@ -39,13 +39,14 @@ public class GameboardActivity extends AppCompatActivity {
         ImageView profilePicture1 = (ImageView) findViewById (R.id.profilePicture1);
         ImageView profilePicture2 = (ImageView) findViewById (R.id.profilePicture2);
 
-        if (turn == false)
+        if (!turn)
         {
             profilePicture2.setBackgroundResource(R.color.border);
             profilePicture1.setBackgroundResource(R.color.background_color);
         }
-        else if (turn == true)
+        else if (turn)
         {
+            System.out.println (999);
             profilePicture1.setBackgroundResource(R.color.border);
             profilePicture2.setBackgroundResource(R.color.background_color);
         }
