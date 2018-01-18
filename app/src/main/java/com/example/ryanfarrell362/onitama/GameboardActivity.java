@@ -58,12 +58,12 @@ public class GameboardActivity extends AppCompatActivity {
 
         if (!turn)
         {
-            profilePicture2.setBackgroundResource(R.color.border);
+            profilePicture2.setBackgroundResource(R.color.highlight);
             profilePicture1.setBackgroundResource(R.color.background_color);
         }
         else if (turn)
         {
-            profilePicture1.setBackgroundResource(R.color.border);
+            profilePicture1.setBackgroundResource(R.color.highlight);
             profilePicture2.setBackgroundResource(R.color.background_color);
         }
     }
