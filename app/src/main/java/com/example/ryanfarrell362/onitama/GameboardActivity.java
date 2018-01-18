@@ -46,7 +46,6 @@ public class GameboardActivity extends AppCompatActivity {
         }
         else if (turn)
         {
-            System.out.println (999);
             profilePicture1.setBackgroundResource(R.color.border);
             profilePicture2.setBackgroundResource(R.color.background_color);
         }
