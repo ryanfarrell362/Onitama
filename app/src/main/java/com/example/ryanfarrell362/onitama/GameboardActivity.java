@@ -39,16 +39,13 @@ public class GameboardActivity extends AppCompatActivity {
         tileAssigner (boardTiles); // Fills 2D array of board tiles
         turn = firstTurn (gameCards, turn); // Determine who goes first
 
-        while (!gameOver)
-        {
-            // Game Start
-            assignTurn (turn); // Assign who goes
-            // Choose card
-            // Choose piece
-            // Move piece
-            // Swap cards
-            // Check for win
-        }
+        // Game Start
+        assignTurn (turn); // Assign who goes
+        // Choose card
+        // Choose piece
+        // Move piece
+        // Swap cards
+        // Check for win
 
         // Necessary things
         // ArrayLists for blue and red pieces (ResID's)
