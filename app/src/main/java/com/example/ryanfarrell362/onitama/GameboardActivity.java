@@ -18,8 +18,37 @@ public class GameboardActivity extends AppCompatActivity {
         ArrayList<Card> cards = new ArrayList<Card> ();
         Card [] gameCards = new Card [5];
 
-        cardInitialization (cards);
-        cardDealer (cards, gameCards);
+        boolean turn = false;
+
+        // Game Initialization
+        cardInitialization (cards); // Setup cards
+        cardDealer (cards, gameCards); // Deal out cards
+        firstTurn (gameCards, turn); // Determine who goes first
+
+        // Game Start
+        assignTurn (turn); // Assign who goes
+        // Choose card
+        // Choose piece
+        // Move piece
+        // Swap cards
+        // Check for win
+    }
+
+    public void assignTurn (boolean turn)
+    {
+        ImageView profilePicture1 = (ImageView) findViewById (R.id.profilePicture1);
+        ImageView profilePicture2 = (ImageView) findViewById (R.id.profilePicture2);
+
+        if (turn == false)
+        {
+            profilePicture2.setBackgroundResource(R.color.border);
+            profilePicture1.setBackgroundResource(R.color.background_color);
+        }
+        else if (turn == true)
+        {
+            profilePicture1.setBackgroundResource(R.color.border);
+            profilePicture2.setBackgroundResource(R.color.background_color);
+        }
     }
 
     public void cardDealer(ArrayList cards, Card [] gameCards)
@@ -159,5 +188,19 @@ public class GameboardActivity extends AppCompatActivity {
         cards.add (horse);
 
         return cards;
+    }
+
+    public boolean firstTurn (Card [] gameCards, boolean turn)
+    {
+        if (gameCards [4].getColour() == 'b')
+        {
+            turn = false; // Blue
+        }
+        else if (gameCards [4].getColour() == 'r')
+        {
+            turn = true; // Red
+        }
+
+        return turn;
     }
 }
