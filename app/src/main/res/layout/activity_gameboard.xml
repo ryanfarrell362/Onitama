@@ -50,7 +50,7 @@
             android:layout_height="@dimen/board_size">
 
         <ImageButton
-            android:id="@+id/A1"
+            android:id="@+id/btn1"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="0"
@@ -61,7 +61,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/A2"
+            android:id="@+id/btn2"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="0"
@@ -72,7 +72,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/A3"
+            android:id="@+id/btn3"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="0"
@@ -83,7 +83,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/A4"
+            android:id="@+id/btn4"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="0"
@@ -94,7 +94,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/A5"
+            android:id="@+id/btn5"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="0"
@@ -105,7 +105,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/B1"
+            android:id="@+id/btn6"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
@@ -114,7 +114,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/B2"
+            android:id="@+id/btn7"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
@@ -123,7 +123,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/B3"
+            android:id="@+id/btn8"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
@@ -132,7 +132,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/B4"
+            android:id="@+id/btn9"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
@@ -141,7 +141,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/B5"
+            android:id="@+id/btn10"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
@@ -150,7 +150,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/C1"
+            android:id="@+id/btn11"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
@@ -159,7 +159,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/C2"
+            android:id="@+id/btn12"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
@@ -168,7 +168,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/C3"
+            android:id="@+id/btn13"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
@@ -177,7 +177,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/C4"
+            android:id="@+id/btn14"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
@@ -186,7 +186,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/C5"
+            android:id="@+id/btn15"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
@@ -195,7 +195,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/D1"
+            android:id="@+id/btn16"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
@@ -204,7 +204,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/D2"
+            android:id="@+id/btn17"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
@@ -213,7 +213,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/D3"
+            android:id="@+id/btn18"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
@@ -222,7 +222,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/D4"
+            android:id="@+id/btn19"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
@@ -231,7 +231,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/D5"
+            android:id="@+id/btn20"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
@@ -240,7 +240,7 @@
             android:layout_margin="@dimen/tile_margin"/>
 
         <ImageButton
-            android:id="@+id/E1"
+            android:id="@+id/btn21"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="4"
@@ -251,7 +251,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/E2"
+            android:id="@+id/btn22"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="4"
@@ -262,7 +262,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/E3"
+            android:id="@+id/btn23"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="4"
@@ -273,7 +273,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/E4"
+            android:id="@+id/btn24"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="4"
@@ -284,7 +284,7 @@
             android:scaleType="centerCrop"/>
 
         <ImageButton
-            android:id="@+id/E5"
+            android:id="@+id/btn25"
             android:layout_width="@dimen/board_tile_width"
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="4"

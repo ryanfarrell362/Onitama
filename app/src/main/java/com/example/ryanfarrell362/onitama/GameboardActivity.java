@@ -15,23 +15,43 @@ public class GameboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameboard);
 
-        ArrayList<Card> cards = new ArrayList<Card> ();
-        Card [] gameCards = new Card [5];
+        // Cards
+        ArrayList<Card> cards = new ArrayList<Card> (); // For choosing the cards to be in the game
+        Card [] gameCards = new Card [5]; // For storing the information of those cards
+        int [] gameCardIDs = new int [5]; // For storing the images of those cards
+
+        // Game Pieces
+        int blueStudentID = getResources ().getIdentifier ("bluestudent", "mipmap", getPackageName());
+        int blueMasterID = getResources ().getIdentifier ("bluemaster", "mipmap", getPackageName());
+
+        int redStudentID = getResources ().getIdentifier ("redstudent", "mipmap", getPackageName());
+        int redMasterID = getResources ().getIdentifier ("redmaster", "mipmap", getPackageName());
+
+        // Game board
+        ImageButton [][] boardTiles = new ImageButton [5][5]; // Stores tile information
 
         boolean turn = false;
+        boolean gameOver = false;
 
         // Game Initialization
         cardInitialization (cards); // Setup cards
-        cardDealer (cards, gameCards); // Deal out cards
+        cardDealer (cards, gameCards, gameCardIDs); // Deal out cards
+        tileAssigner (boardTiles); // Fills 2D array of board tiles
         turn = firstTurn (gameCards, turn); // Determine who goes first
 
-        // Game Start
-        assignTurn (turn); // Assign who goes
-        // Choose card
-        // Choose piece
-        // Move piece
-        // Swap cards
-        // Check for win
+        while (!gameOver)
+        {
+            // Game Start
+            assignTurn (turn); // Assign who goes
+            // Choose card
+            // Choose piece
+            // Move piece
+            // Swap cards
+            // Check for win
+        }
+
+        // Necessary things
+        // ArrayLists for blue and red pieces (ResID's)
     }
 
     public void assignTurn (boolean turn)
@@ -51,31 +71,31 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    public void cardDealer(ArrayList cards, Card [] gameCards)
+    public void cardDealer(ArrayList cards, Card [] gameCards, int [] gameCardIDs)
     {
         int arrayValue = 0;
 
         ImageButton player1Card1 = (ImageButton) findViewById (R.id.player1Card1);
-        cardAssigner (cards, player1Card1, gameCards, arrayValue);
+        cardAssigner (cards, player1Card1, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageButton player1Card2 = (ImageButton) findViewById (R.id.player1Card2);
-        cardAssigner (cards, player1Card2, gameCards, arrayValue);
+        cardAssigner (cards, player1Card2, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageButton player2Card1 = (ImageButton) findViewById (R.id.player2Card1);
-        cardAssigner (cards, player2Card1, gameCards, arrayValue);
+        cardAssigner (cards, player2Card1, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageButton player2Card2 = (ImageButton) findViewById (R.id.player2Card2);
-        cardAssigner (cards, player2Card2, gameCards, arrayValue);
+        cardAssigner (cards, player2Card2, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageView middleCard = (ImageView) findViewById (R.id.middleCard);
-        cardAssigner (cards, middleCard, gameCards, arrayValue);
+        cardAssigner (cards, middleCard, gameCards, gameCardIDs, arrayValue);
     }
 
-    public ArrayList cardAssigner (ArrayList cards, ImageButton card, Card [] gameCards, int arrayValue)
+    public ArrayList cardAssigner (ArrayList cards, ImageButton card, Card [] gameCards, int [] gameCardIDs, int arrayValue)
     {
         Random numGen = new Random ();
 
@@ -84,6 +104,7 @@ public class GameboardActivity extends AppCompatActivity {
         gameCards [arrayValue] = chosenCard;
         String name = chosenCard.getName ();
         int resID = getResources ().getIdentifier (name.toLowerCase(), "mipmap", getPackageName());
+        gameCardIDs [arrayValue] = resID;
 
         card.setImageResource(resID);
         cards.remove (randNum);
@@ -91,7 +112,7 @@ public class GameboardActivity extends AppCompatActivity {
         return cards;
     }
 
-    public void cardAssigner (ArrayList cards, ImageView card, Card [] gameCards, int arrayValue)
+    public void cardAssigner (ArrayList cards, ImageView card, Card [] gameCards, int [] gameCardIDs, int arrayValue)
     {
         Random numGen = new Random ();
 
@@ -100,6 +121,7 @@ public class GameboardActivity extends AppCompatActivity {
         gameCards [arrayValue] = chosenCard;
         String name = chosenCard.getName ();
         int resID = getResources ().getIdentifier (name.toLowerCase(), "mipmap", getPackageName());
+        gameCardIDs [arrayValue] = resID;
 
         card.setImageResource(resID);
     }
@@ -202,5 +224,38 @@ public class GameboardActivity extends AppCompatActivity {
         }
 
         return turn;
+    }
+
+    public void tileAssigner (ImageButton [][] boardTiles)
+    {
+        boardTiles [0][0] = (ImageButton) findViewById (R.id.btn1);
+        boardTiles [0][1] = (ImageButton) findViewById (R.id.btn2);
+        boardTiles [0][2] = (ImageButton) findViewById (R.id.btn3);
+        boardTiles [0][3] = (ImageButton) findViewById (R.id.btn4);
+        boardTiles [0][4] = (ImageButton) findViewById (R.id.btn5);
+
+        boardTiles [1][0] = (ImageButton) findViewById (R.id.btn6);
+        boardTiles [1][1] = (ImageButton) findViewById (R.id.btn7);
+        boardTiles [1][2] = (ImageButton) findViewById (R.id.btn8);
+        boardTiles [1][3] = (ImageButton) findViewById (R.id.btn9);
+        boardTiles [1][4] = (ImageButton) findViewById (R.id.btn10);
+
+        boardTiles [2][0] = (ImageButton) findViewById (R.id.btn11);
+        boardTiles [2][1] = (ImageButton) findViewById (R.id.btn12);
+        boardTiles [2][2] = (ImageButton) findViewById (R.id.btn13);
+        boardTiles [2][3] = (ImageButton) findViewById (R.id.btn14);
+        boardTiles [2][4] = (ImageButton) findViewById (R.id.btn15);
+
+        boardTiles [3][0] = (ImageButton) findViewById (R.id.btn16);
+        boardTiles [3][1] = (ImageButton) findViewById (R.id.btn17);
+        boardTiles [3][2] = (ImageButton) findViewById (R.id.btn18);
+        boardTiles [3][3] = (ImageButton) findViewById (R.id.btn19);
+        boardTiles [3][4] = (ImageButton) findViewById (R.id.btn20);
+
+        boardTiles [4][0] = (ImageButton) findViewById (R.id.btn21);
+        boardTiles [4][1] = (ImageButton) findViewById (R.id.btn22);
+        boardTiles [4][2] = (ImageButton) findViewById (R.id.btn23);
+        boardTiles [4][3] = (ImageButton) findViewById (R.id.btn24);
+        boardTiles [4][4] = (ImageButton) findViewById (R.id.btn25);
     }
 }
