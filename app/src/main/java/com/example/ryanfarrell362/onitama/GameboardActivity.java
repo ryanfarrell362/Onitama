@@ -308,6 +308,18 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles [4][2] = (ImageButton) findViewById (R.id.btn23);
         boardTiles [4][3] = (ImageButton) findViewById (R.id.btn24);
         boardTiles [4][4] = (ImageButton) findViewById (R.id.btn25);
+
+        boardTiles [0][0].setTag ("redstudent");
+        boardTiles [0][1].setTag ("redstudent");
+        boardTiles [0][2].setTag ("redmaster");
+        boardTiles [0][3].setTag ("redstudent");
+        boardTiles [0][4].setTag ("redstudent");
+
+        boardTiles [4][0].setTag ("bluestudent");
+        boardTiles [4][1].setTag ("bluestudent");
+        boardTiles [4][2].setTag ("bluemaster");
+        boardTiles [4][3].setTag ("bluestudent");
+        boardTiles [4][4].setTag ("bluestudent");
     }
 
     public void tileScan ()
@@ -318,10 +330,8 @@ public class GameboardActivity extends AppCompatActivity {
             {
                 for (int y = 0; y < boardTiles[x].length; y++)
                 {
-                    int temp = boardTiles [x][y].getResources ().getIdentifier ("redstudent", "mipmap", getPackageName());
-                    int temp2 = boardTiles [x][y].getResources ().getIdentifier ("redmaster", "mipmap", getPackageName());
 
-                    if (temp == redStudentID || temp2 == redMasterID)
+                    if (boardTiles [x][y].getTag () == "redstudent" || boardTiles [x][y].getTag () == "redmaster")
                     {
                         boardTiles[x][y].setBackgroundResource(R.color.highlight);
                     }
@@ -334,10 +344,7 @@ public class GameboardActivity extends AppCompatActivity {
             {
                 for (int y = 0; y < boardTiles[x].length; y++)
                 {
-                    int temp = boardTiles [x][y].getResources ().getIdentifier ("bluestudent", "mipmap", getPackageName());
-                    int temp2 = boardTiles [x][y].getResources ().getIdentifier ("bluemaster", "mipmap", getPackageName());
-
-                    if (temp == blueStudentID || temp2 == blueMasterID)
+                    if (boardTiles [x][y].getTag () == "bluestudent" || boardTiles [x][y].getTag () == "bluemaster")
                     {
                         boardTiles[x][y].setBackgroundResource(R.color.highlight);
                     }
