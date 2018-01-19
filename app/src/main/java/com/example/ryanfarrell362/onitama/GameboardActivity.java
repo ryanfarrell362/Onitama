@@ -14,28 +14,34 @@ public class GameboardActivity extends AppCompatActivity {
     static String cardSelected;
     static String tileSelected;
 
+    // Cards
+    public static ArrayList<Card> cards = new ArrayList<Card> (); // For choosing the cards to be in the game
+    public static Card [] gameCards = new Card [5]; // For storing the information of those cards
+    public static int [] gameCardIDs = new int [5]; // For storing the images of those cards
+    public static ImageButton [][] boardTiles = new ImageButton [5][5]; // Stores tile information
+
+    // Game Pieces
+    public static int blueStudentID;
+    public static int blueMasterID;
+
+    public static int redStudentID;
+    public static int redMasterID;
+
+    // Game Board
+    public static boolean turn = false;
+    public static boolean gameOver = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameboard);
 
-        // Cards
-        ArrayList<Card> cards = new ArrayList<Card> (); // For choosing the cards to be in the game
-        Card [] gameCards = new Card [5]; // For storing the information of those cards
-        int [] gameCardIDs = new int [5]; // For storing the images of those cards
-
         // Game Pieces
-        int blueStudentID = getResources ().getIdentifier ("bluestudent", "mipmap", getPackageName());
-        int blueMasterID = getResources ().getIdentifier ("bluemaster", "mipmap", getPackageName());
+        blueStudentID = getResources ().getIdentifier ("bluestudent", "mipmap", getPackageName());
+        blueMasterID = getResources ().getIdentifier ("bluemaster", "mipmap", getPackageName());
 
-        int redStudentID = getResources ().getIdentifier ("redstudent", "mipmap", getPackageName());
-        int redMasterID = getResources ().getIdentifier ("redmaster", "mipmap", getPackageName());
-
-        // Game board
-        ImageButton [][] boardTiles = new ImageButton [5][5]; // Stores tile information
-
-        boolean turn = false;
-        boolean gameOver = false;
+        redStudentID = getResources ().getIdentifier ("redstudent", "mipmap", getPackageName());
+        redMasterID = getResources ().getIdentifier ("redmaster", "mipmap", getPackageName());
 
         // Game Initialization
         cardInitialization (cards); // Setup cards
@@ -57,39 +63,39 @@ public class GameboardActivity extends AppCompatActivity {
 
     //Card Listeners
 
-    public void player1Card1 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int redStudentID, int redMasterID)
+    public void player1Card1 (View view)
     {
         if (turn)
         {
             cardSelected = gameCards [0].getName ();
-            tileScan (turn, boardTiles, redStudentID, redMasterID, 0, 0);
+            tileScan ();
         }
     }
 
-    public void player1Card2 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int redStudentID, int redMasterID)
+    public void player1Card2 (View view)
     {
         if (turn)
         {
             cardSelected = gameCards [1].getName ();
-            tileScan (turn, boardTiles, redStudentID, redMasterID, 0, 0);
+            tileScan ();
         }
     }
 
-    public void player2Card1 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int blueStudentID, int blueMasterID)
+    public void player2Card1 (View view)
     {
         if (!turn)
         {
             cardSelected = gameCards [3].getName ();
-            tileScan (turn, boardTiles, 0, 0, blueStudentID, blueMasterID);
+            tileScan ();
         }
     }
 
-    public void player2Card2 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int blueStudentID, int blueMasterID)
+    public void player2Card2 (View view)
     {
         if (!turn)
         {
             cardSelected = gameCards [4].getName ();
-            tileScan (turn, boardTiles, 0, 0, blueStudentID, blueMasterID);
+            tileScan ();
         }
     }
 
@@ -304,7 +310,7 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles [4][4] = (ImageButton) findViewById (R.id.btn25);
     }
 
-    public void tileScan (boolean turn, ImageButton [][] boardTiles, int redStudentID, int redMasterID, int blueStudentID, int blueMasterID)
+    public void tileScan ()
     {
         if (turn)
         {
