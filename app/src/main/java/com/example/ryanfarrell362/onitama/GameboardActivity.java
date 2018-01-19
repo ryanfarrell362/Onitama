@@ -312,7 +312,10 @@ public class GameboardActivity extends AppCompatActivity {
             {
                 for (int y = 0; y < boardTiles[x].length; y++)
                 {
-                    if (boardTiles[x][y].getId() == redStudentID || boardTiles[x][y].getId() == redMasterID)
+                    int temp = boardTiles [x][y].getResources ().getIdentifier ("redstudent", "mipmap", getPackageName());
+                    int temp2 = boardTiles [x][y].getResources ().getIdentifier ("redmaster", "mipmap", getPackageName());
+
+                    if (temp == redStudentID || temp2 == redMasterID)
                     {
                         boardTiles[x][y].setBackgroundResource(R.color.highlight);
                     }
@@ -325,7 +328,10 @@ public class GameboardActivity extends AppCompatActivity {
             {
                 for (int y = 0; y < boardTiles[x].length; y++)
                 {
-                    if (boardTiles[x][y].getId() == blueStudentID || boardTiles[x][y].getId() == blueMasterID)
+                    int temp = boardTiles [x][y].getResources ().getIdentifier ("bluestudent", "mipmap", getPackageName());
+                    int temp2 = boardTiles [x][y].getResources ().getIdentifier ("bluemaster", "mipmap", getPackageName());
+
+                    if (temp == blueStudentID || temp2 == blueMasterID)
                     {
                         boardTiles[x][y].setBackgroundResource(R.color.highlight);
                     }
