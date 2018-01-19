@@ -2,6 +2,7 @@ package com.example.ryanfarrell362.onitama;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameboardActivity extends AppCompatActivity {
+
+    static String cardSelected;
+    static String tileSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,50 @@ public class GameboardActivity extends AppCompatActivity {
         // Necessary things
         // ArrayLists for blue and red pieces (ResID's)
     }
+
+    //Card Listeners
+
+    public void player1Card1 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int redStudentID, int redMasterID)
+    {
+        if (turn)
+        {
+            cardSelected = gameCards [0].getName ();
+            tileScan (turn, boardTiles, redStudentID, redMasterID, 0, 0);
+        }
+    }
+
+    public void player1Card2 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int redStudentID, int redMasterID)
+    {
+        if (turn)
+        {
+            cardSelected = gameCards [1].getName ();
+            tileScan (turn, boardTiles, redStudentID, redMasterID, 0, 0);
+        }
+    }
+
+    public void player2Card1 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int blueStudentID, int blueMasterID)
+    {
+        if (!turn)
+        {
+            cardSelected = gameCards [3].getName ();
+            tileScan (turn, boardTiles, 0, 0, blueStudentID, blueMasterID);
+        }
+    }
+
+    public void player2Card2 (View view, Card [] gameCards, boolean turn, ImageButton [][] boardTiles, int blueStudentID, int blueMasterID)
+    {
+        if (!turn)
+        {
+            cardSelected = gameCards [4].getName ();
+            tileScan (turn, boardTiles, 0, 0, blueStudentID, blueMasterID);
+        }
+    }
+
+    // Tile Listeners
+
+
+
+    // Other Methods
 
     public void assignTurn (boolean turn)
     {
@@ -254,5 +302,35 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles [4][2] = (ImageButton) findViewById (R.id.btn23);
         boardTiles [4][3] = (ImageButton) findViewById (R.id.btn24);
         boardTiles [4][4] = (ImageButton) findViewById (R.id.btn25);
+    }
+
+    public void tileScan (boolean turn, ImageButton [][] boardTiles, int redStudentID, int redMasterID, int blueStudentID, int blueMasterID)
+    {
+        if (turn)
+        {
+            for (int x = 0; x < boardTiles.length; x++)
+            {
+                for (int y = 0; y < boardTiles[x].length; y++)
+                {
+                    if (boardTiles[x][y].getId() == redStudentID || boardTiles[x][y].getId() == redMasterID)
+                    {
+                        boardTiles[x][y].setBackgroundResource(R.color.highlight);
+                    }
+                }
+            }
+        }
+        else if (!turn)
+        {
+            for (int x = 0; x < boardTiles.length; x++)
+            {
+                for (int y = 0; y < boardTiles[x].length; y++)
+                {
+                    if (boardTiles[x][y].getId() == blueStudentID || boardTiles[x][y].getId() == blueMasterID)
+                    {
+                        boardTiles[x][y].setBackgroundResource(R.color.highlight);
+                    }
+                }
+            }
+        }
     }
 }

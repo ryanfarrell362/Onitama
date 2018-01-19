@@ -21,7 +21,8 @@
             android:layout_height="@dimen/card_height"
             android:rotation="180"
             android:background="@mipmap/cardtemplate"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:onClick="player1Card1"/>
 
         <ImageButton
             android:id="@+id/player1Card2"
@@ -30,7 +31,8 @@
             android:layout_marginLeft="@dimen/card_margin"
             android:rotation="180"
             android:background="@mipmap/cardtemplate"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:onClick="player1Card2"/>
 
     </LinearLayout>
 
@@ -349,7 +351,8 @@
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
             android:background="@mipmap/cardtemplate"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:onClick="player2Card1"/>
 
         <ImageButton
             android:id="@+id/player2Card2"
@@ -357,7 +360,8 @@
             android:layout_height="@dimen/card_height"
             android:layout_marginLeft="@dimen/card_margin"
             android:background="@mipmap/cardtemplate"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:onClick="player2Card2"/>
 
     </LinearLayout>
 </LinearLayout>
