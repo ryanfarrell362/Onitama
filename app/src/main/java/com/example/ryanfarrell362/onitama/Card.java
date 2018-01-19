@@ -23,12 +23,12 @@ public class Card
 
     public int [] getXMoves ()
     {
-        return this.xMoves;
+        return (xMoves);
     }
 
     public int [] getYMoves ()
     {
-        return this.yMoves;
+        return (yMoves);
     }
 
     public char getColour ()
