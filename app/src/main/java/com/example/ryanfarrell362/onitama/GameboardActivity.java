@@ -101,7 +101,130 @@ public class GameboardActivity extends AppCompatActivity {
 
     // Tile Listeners
 
+    public void btn1 (View view)
+    {
 
+    }
+
+    public void btn2 (View view)
+    {
+
+    }
+
+    public void btn3 (View view)
+    {
+
+    }
+
+    public void btn4 (View view)
+    {
+
+    }
+
+    public void btn5 (View view)
+    {
+
+    }
+
+    public void btn6 (View view)
+    {
+
+    }
+
+    public void btn7 (View view)
+    {
+
+    }
+
+    public void btn8 (View view)
+    {
+
+    }
+
+    public void btn9 (View view)
+    {
+
+    }
+
+    public void btn10 (View view)
+    {
+
+    }
+
+    public void btn11 (View view)
+    {
+
+    }
+
+    public void btn12 (View view)
+    {
+
+    }
+
+    public void btn13 (View view)
+    {
+
+    }
+
+    public void btn14 (View view)
+    {
+
+    }
+
+    public void btn15 (View view)
+    {
+
+    }
+
+    public void btn16 (View view)
+    {
+
+    }
+
+    public void btn17 (View view)
+    {
+
+    }
+
+    public void btn18 (View view)
+    {
+
+    }
+
+    public void btn19 (View view)
+    {
+
+    }
+
+    public void btn20 (View view)
+    {
+
+    }
+
+    public void btn21 (View view)
+    {
+
+    }
+
+    public void btn22 (View view)
+    {
+
+    }
+
+    public void btn23 (View view)
+    {
+
+    }
+
+    public void btn24 (View view)
+    {
+
+    }
+
+    public void btn25 (View view)
+    {
+
+    }
 
     // Other Methods
 
