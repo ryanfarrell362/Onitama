@@ -14,8 +14,11 @@ public class GameboardActivity extends AppCompatActivity {
     static String cardSelected;
     static String tileSelected;
 
+    static boolean isCardSelected = false;
+    static boolean isTileSelected = false;
+
     // Cards
-    public static ArrayList<Card> cards = new ArrayList<Card> (); // For choosing the cards to be in the game
+    public static ArrayList<Card> cards = new ArrayList<> (); // For choosing the cards to be in the game
     public static Card [] gameCards = new Card [5]; // For storing the information of those cards
     public static int [] gameCardIDs = new int [5]; // For storing the images of those cards
     public static ImageButton [][] boardTiles = new ImageButton [5][5]; // Stores tile information
@@ -29,7 +32,7 @@ public class GameboardActivity extends AppCompatActivity {
 
     // Game Board
     public static boolean turn = false;
-    public static boolean gameOver = false;
+    public static int gameOver = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (turn)
         {
             cardSelected = gameCards [0].getName ();
+            isCardSelected = true;
             tileScan ();
         }
     }
@@ -77,6 +81,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (turn)
         {
             cardSelected = gameCards [1].getName ();
+            isCardSelected = true;
             tileScan ();
         }
     }
@@ -86,6 +91,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (!turn)
         {
             cardSelected = gameCards [3].getName ();
+            isCardSelected = true;
             tileScan ();
         }
     }
@@ -95,6 +101,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (!turn)
         {
             cardSelected = gameCards [4].getName ();
+            isCardSelected = true;
             tileScan ();
         }
     }
@@ -443,6 +450,11 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles [4][2].setTag ("bluemaster");
         boardTiles [4][3].setTag ("bluestudent");
         boardTiles [4][4].setTag ("bluestudent");
+    }
+
+    public void moveScan ()
+    {
+
     }
 
     public void tileScan ()
