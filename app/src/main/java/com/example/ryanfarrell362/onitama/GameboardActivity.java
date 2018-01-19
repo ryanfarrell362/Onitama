@@ -36,7 +36,7 @@ public class GameboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameboard);
 
-        // Game Pieces
+        // Game Pieces (Might not be needed)
         blueStudentID = getResources ().getIdentifier ("bluestudent", "mipmap", getPackageName());
         blueMasterID = getResources ().getIdentifier ("bluemaster", "mipmap", getPackageName());
 
@@ -51,7 +51,7 @@ public class GameboardActivity extends AppCompatActivity {
 
         // Game Start
         assignTurn (turn); // Assign who goes
-        // Choose card
+        // Choose card (DONE)
         // Choose piece
         // Move piece
         // Swap cards
@@ -335,6 +335,10 @@ public class GameboardActivity extends AppCompatActivity {
                     {
                         boardTiles[x][y].setBackgroundResource(R.color.highlight);
                     }
+                    else
+                    {
+                        boardTiles[x][y].setBackgroundResource(R.color.background_color);
+                    }
                 }
             }
         }
@@ -347,6 +351,10 @@ public class GameboardActivity extends AppCompatActivity {
                     if (boardTiles [x][y].getTag () == "bluestudent" || boardTiles [x][y].getTag () == "bluemaster")
                     {
                         boardTiles[x][y].setBackgroundResource(R.color.highlight);
+                    }
+                    else
+                    {
+                        boardTiles[x][y].setBackgroundResource(R.color.background_color);
                     }
                 }
             }
