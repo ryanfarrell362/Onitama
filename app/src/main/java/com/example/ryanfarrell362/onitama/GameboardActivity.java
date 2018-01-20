@@ -622,7 +622,7 @@ public class GameboardActivity extends AppCompatActivity {
 
         //(int x = 0; x < cardSelected.getXMoves ().length; x ++)
         //{
-            //boardTiles [tileSelectedX + xMoves [x]][yMoves [x]].setBackgroundResource(R.color.highlight);
+            //boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].setBackgroundResource(R.color.highlight);
         //}
     }
 
