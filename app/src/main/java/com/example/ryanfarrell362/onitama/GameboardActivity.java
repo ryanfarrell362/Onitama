@@ -1,6 +1,5 @@
 package com.example.ryanfarrell362.onitama;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -92,7 +91,7 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (!turn)
         {
-            cardSelected = gameCards [3];
+            cardSelected = gameCards [2];
             isCardSelected = true;
             tileScan ();
         }
@@ -102,7 +101,7 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (!turn)
         {
-            cardSelected = gameCards [4];
+            cardSelected = gameCards [3];
             isCardSelected = true;
             tileScan ();
         }
@@ -114,10 +113,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [0][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 0;
-            tileSelectedY = 0;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 0;
+                tileSelectedY = 0;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -125,10 +131,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [0][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 0;
-            tileSelectedY = 1;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 0;
+                tileSelectedY = 1;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -136,10 +149,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [0][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 0;
-            tileSelectedY = 2;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 0;
+                tileSelectedY = 2;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -147,10 +167,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [0][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 0;
-            tileSelectedY = 3;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 0;
+                tileSelectedY = 3;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -158,10 +185,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [0][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 0;
-            tileSelectedY = 4;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 0;
+                tileSelectedY = 4;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -169,10 +203,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [1][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 1;
-            tileSelectedY = 0;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 1;
+                tileSelectedY = 0;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -180,10 +221,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [1][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 1;
-            tileSelectedY = 1;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 1;
+                tileSelectedY = 1;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -191,10 +239,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [1][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 1;
-            tileSelectedY = 2;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 1;
+                tileSelectedY = 2;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -202,10 +257,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [1][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 1;
-            tileSelectedY = 3;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 1;
+                tileSelectedY = 3;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -213,10 +275,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [1][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 1;
-            tileSelectedY = 4;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 1;
+                tileSelectedY = 4;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -224,10 +293,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [2][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 2;
-            tileSelectedY = 0;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 2;
+                tileSelectedY = 0;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -235,10 +311,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [2][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 2;
-            tileSelectedY = 1;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 2;
+                tileSelectedY = 1;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -246,10 +329,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [2][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 2;
-            tileSelectedY = 2;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 2;
+                tileSelectedY = 2;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -257,10 +347,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [2][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 2;
-            tileSelectedY = 3;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 2;
+                tileSelectedY = 3;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -268,10 +365,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [2][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 2;
-            tileSelectedY = 4;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 2;
+                tileSelectedY = 4;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -279,10 +383,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [3][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 3;
-            tileSelectedY = 0;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 3;
+                tileSelectedY = 0;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -290,10 +401,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [3][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 3;
-            tileSelectedY = 1;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 3;
+                tileSelectedY = 1;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -301,10 +419,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [3][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 3;
-            tileSelectedY = 2;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 3;
+                tileSelectedY = 2;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -312,10 +437,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [3][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 3;
-            tileSelectedY = 3;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 3;
+                tileSelectedY = 3;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -323,10 +455,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [3][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 3;
-            tileSelectedY = 4;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 3;
+                tileSelectedY = 4;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -334,10 +473,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [4][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 4;
-            tileSelectedY = 0;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 4;
+                tileSelectedY = 0;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -345,10 +491,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [4][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 4;
-            tileSelectedY = 1;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 4;
+                tileSelectedY = 1;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -356,10 +509,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [4][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 4;
-            tileSelectedY = 2;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 4;
+                tileSelectedY = 2;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -367,10 +527,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [4][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 4;
-            tileSelectedY = 3;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 4;
+                tileSelectedY = 3;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -378,10 +545,17 @@ public class GameboardActivity extends AppCompatActivity {
     {
         if (boardTiles [4][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState())
         {
-            tileSelectedX = 4;
-            tileSelectedY = 4;
-            isTileSelected = true;
-            moveScan ();
+            if (isTileSelected == false)
+            {
+                tileSelectedX = 4;
+                tileSelectedY = 4;
+                isTileSelected = true;
+                moveScan ();
+            }
+            else if (isTileSelected == true)
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -617,13 +791,26 @@ public class GameboardActivity extends AppCompatActivity {
             }
         }
 
-        //int [] xMoves = cardSelected.getXMoves();
-        //int [] yMoves = cardSelected.getYMoves();
+        int [] xMoves = cardSelected.getXMoves();
+        int [] yMoves = cardSelected.getYMoves();
 
-        //(int x = 0; x < cardSelected.getXMoves ().length; x ++)
-        //{
-            //boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].setBackgroundResource(R.color.highlight);
-        //}
+        for (int x = 0; x < cardSelected.getXMoves ().length; x ++)
+        {
+            if (turn)
+            {
+                if (tileSelectedX + xMoves [x] < 5 && tileSelectedY + yMoves [x] < 5 && tileSelectedX + xMoves [x] > 0 && tileSelectedY + yMoves [x] > 0 && boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].getTag () != "redstudent" && boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].getTag () != "redmaster")
+                {
+                    boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].setBackgroundResource(R.color.highlight);
+                }
+            }
+            else if (!turn)
+            {
+                if (tileSelectedX + xMoves [x] < 5 && tileSelectedY + yMoves [x] < 5 && tileSelectedX + xMoves [x] > 0 && tileSelectedY + yMoves [x] > 0 && boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].getTag () != "bluestudent" && boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].getTag () != "bluemaster")
+                {
+                    boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].setBackgroundResource(R.color.highlight);
+                }
+            }
+        }
     }
 
     public void tileScan ()
