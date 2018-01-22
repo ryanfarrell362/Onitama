@@ -917,8 +917,12 @@ public class GameboardActivity extends AppCompatActivity {
         gameCards [cardSelectedInt] = gameCards [4];
         gameCards [4] = temp;
 
-        gameCardPictures [4].setImageResource(gameCardIDs [4]);
-        gameCardPictures [cardSelectedInt].setImageResource(cardSelectedInt);
+        int tempInt = gameCardIDs [cardSelectedInt];
+        gameCardIDs [cardSelectedInt] = gameCardIDs [4];
+        gameCardIDs [4] = tempInt;
+
+        gameCardPictures [cardSelectedInt].setBackgroundResource(gameCardIDs [4]);
+        gameCardPictures [4].setBackgroundResource(gameCardIDs [cardSelectedInt]);
 
         assignTurn ();
     }

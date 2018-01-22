@@ -347,7 +347,7 @@
                 android:layout_marginBottom="@dimen/middle_card_margin_top"
                 android:rotation="270"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/cardtemplate" />
+                android:background="@mipmap/cardtemplate" />
 
             <ImageView
                 android:id="@+id/profilePicture2"
