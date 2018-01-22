@@ -339,7 +339,7 @@
                 android:rotation="180"
                 android:src="@mipmap/redpanda" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/middleCard"
                 android:layout_width="@dimen/small_card_width"
                 android:layout_height="@dimen/small_card_height"

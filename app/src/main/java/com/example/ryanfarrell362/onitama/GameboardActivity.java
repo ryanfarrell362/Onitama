@@ -12,6 +12,7 @@ import java.util.Random;
 public class GameboardActivity extends AppCompatActivity {
 
     static Card cardSelected;
+    static int cardSelectedInt;
 
     static int tileSelectedXOld;
     static int tileSelectedYOld;
@@ -26,6 +27,7 @@ public class GameboardActivity extends AppCompatActivity {
     public static ArrayList<Card> cards = new ArrayList<> (); // For choosing the cards to be in the game
     public static Card [] gameCards = new Card [5]; // For storing the information of those cards
     public static int [] gameCardIDs = new int [5]; // For storing the images of those cards
+    public static ImageButton [] gameCardPictures = new ImageButton [5];
     public static ImageButton [][] boardTiles = new ImageButton [5][5]; // Stores tile information
 
     // Game Pieces
@@ -76,6 +78,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (turn)
         {
             cardSelected = gameCards [0];
+            cardSelectedInt = 0;
             isTileSelected = false;
             isCardSelected = true;
             tileScan ();
@@ -87,6 +90,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (turn)
         {
             cardSelected = gameCards [1];
+            cardSelectedInt = 1;
             isTileSelected = false;
             isCardSelected = true;
             tileScan ();
@@ -98,6 +102,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (!turn)
         {
             cardSelected = gameCards [2];
+            cardSelectedInt = 2;
             isTileSelected = false;
             isCardSelected = true;
             tileScan ();
@@ -109,6 +114,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (!turn)
         {
             cardSelected = gameCards [3];
+            cardSelectedInt = 3;
             isTileSelected = false;
             isCardSelected = true;
             tileScan ();
@@ -615,23 +621,30 @@ public class GameboardActivity extends AppCompatActivity {
     {
         int arrayValue = 0;
 
+        // Need an array of image buttons
+
         ImageButton player1Card1 = (ImageButton) findViewById (R.id.player1Card1);
+        gameCardPictures [0] = player1Card1;
         cardAssigner (cards, player1Card1, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageButton player1Card2 = (ImageButton) findViewById (R.id.player1Card2);
+        gameCardPictures [1] = player1Card2;
         cardAssigner (cards, player1Card2, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageButton player2Card1 = (ImageButton) findViewById (R.id.player2Card1);
+        gameCardPictures [2] = player2Card1;
         cardAssigner (cards, player2Card1, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
         ImageButton player2Card2 = (ImageButton) findViewById (R.id.player2Card2);
+        gameCardPictures [3] = player2Card2;
         cardAssigner (cards, player2Card2, gameCards, gameCardIDs, arrayValue);
         arrayValue ++;
 
-        ImageView middleCard = (ImageView) findViewById (R.id.middleCard);
+        ImageButton middleCard = (ImageButton) findViewById (R.id.middleCard);
+        gameCardPictures [4] = middleCard;
         cardAssigner (cards, middleCard, gameCards, gameCardIDs, arrayValue);
     }
 
@@ -650,20 +663,6 @@ public class GameboardActivity extends AppCompatActivity {
         cards.remove (randNum);
 
         return cards;
-    }
-
-    public void cardAssigner (ArrayList cards, ImageView card, Card [] gameCards, int [] gameCardIDs, int arrayValue)
-    {
-        Random numGen = new Random ();
-
-        int randNum = numGen.nextInt (cards.size ());
-        Card chosenCard = (Card) cards.get (randNum);
-        gameCards [arrayValue] = chosenCard;
-        String name = chosenCard.getName ();
-        int resID = getResources ().getIdentifier (name.toLowerCase(), "mipmap", getPackageName());
-        gameCardIDs [arrayValue] = resID;
-
-        card.setImageResource(resID);
     }
 
     public static ArrayList cardInitialization (ArrayList cards)
@@ -870,8 +869,9 @@ public class GameboardActivity extends AppCompatActivity {
             }
         }
 
+        isCardSelected = false;
         isTileSelected = false;
-        assignTurn ();
+        cardSwap();
     }
 
     public void moveScan ()
@@ -909,6 +909,18 @@ public class GameboardActivity extends AppCompatActivity {
         }
 
         isTileSelected = true;
+    }
+
+    public void cardSwap ()
+    {
+        Card temp = gameCards [cardSelectedInt];
+        gameCards [cardSelectedInt] = gameCards [4];
+        gameCards [4] = temp;
+
+        gameCardPictures [4].setImageResource(gameCardIDs [4]);
+        gameCardPictures [cardSelectedInt].setImageResource(cardSelectedInt);
+
+        assignTurn ();
     }
 
     public void tileScan ()
