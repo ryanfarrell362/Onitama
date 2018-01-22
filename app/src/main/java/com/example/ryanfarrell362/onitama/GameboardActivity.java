@@ -12,8 +12,12 @@ import java.util.Random;
 public class GameboardActivity extends AppCompatActivity {
 
     static Card cardSelected;
-    static int tileSelectedX;
-    static int tileSelectedY;
+
+    static int tileSelectedXOld;
+    static int tileSelectedYOld;
+
+    static int tileSelectedXNew;
+    static int tileSelectedYNew;
 
     static boolean isCardSelected = false;
     static boolean isTileSelected = false;
@@ -54,7 +58,7 @@ public class GameboardActivity extends AppCompatActivity {
         turn = firstTurn (gameCards, turn); // Determine who goes first
 
         // Game Start
-        assignTurn (turn); // Assign who goes
+        assignTurn (); // Assign who goes
         // Choose card (DONE)
         // Choose piece
         // Move piece
@@ -72,6 +76,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (turn)
         {
             cardSelected = gameCards [0];
+            isTileSelected = false;
             isCardSelected = true;
             tileScan ();
         }
@@ -82,6 +87,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (turn)
         {
             cardSelected = gameCards [1];
+            isTileSelected = false;
             isCardSelected = true;
             tileScan ();
         }
@@ -92,6 +98,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (!turn)
         {
             cardSelected = gameCards [2];
+            isTileSelected = false;
             isCardSelected = true;
             tileScan ();
         }
@@ -102,6 +109,7 @@ public class GameboardActivity extends AppCompatActivity {
         if (!turn)
         {
             cardSelected = gameCards [3];
+            isTileSelected = false;
             isCardSelected = true;
             tileScan ();
         }
@@ -115,14 +123,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 0;
-                tileSelectedY = 0;
-                isTileSelected = true;
+                tileSelectedXOld = 0;
+                tileSelectedYOld = 0;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 0;
+                tileSelectedYNew = 0;
+                movePiece ();
             }
         }
     }
@@ -133,14 +142,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 0;
-                tileSelectedY = 1;
-                isTileSelected = true;
+                tileSelectedXOld = 0;
+                tileSelectedYOld = 1;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 0;
+                tileSelectedYNew = 1;
+                movePiece ();
             }
         }
     }
@@ -151,14 +161,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 0;
-                tileSelectedY = 2;
-                isTileSelected = true;
+                tileSelectedXOld = 0;
+                tileSelectedYOld = 2;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 0;
+                tileSelectedYNew = 2;
+                movePiece ();
             }
         }
     }
@@ -169,14 +180,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 0;
-                tileSelectedY = 3;
-                isTileSelected = true;
+                tileSelectedXOld = 0;
+                tileSelectedYOld = 3;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 0;
+                tileSelectedYNew = 3;
+                movePiece ();
             }
         }
     }
@@ -187,14 +199,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 0;
-                tileSelectedY = 4;
-                isTileSelected = true;
+                tileSelectedXOld = 0;
+                tileSelectedYOld = 4;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 0;
+                tileSelectedYNew = 4;
+                movePiece ();
             }
         }
     }
@@ -205,14 +218,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 1;
-                tileSelectedY = 0;
-                isTileSelected = true;
+                tileSelectedXOld = 1;
+                tileSelectedYOld = 0;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 1;
+                tileSelectedYNew = 0;
+                movePiece ();
             }
         }
     }
@@ -223,14 +237,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 1;
-                tileSelectedY = 1;
-                isTileSelected = true;
+                tileSelectedXOld = 1;
+                tileSelectedYOld = 1;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 1;
+                tileSelectedYNew = 1;
+                movePiece ();
             }
         }
     }
@@ -241,14 +256,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 1;
-                tileSelectedY = 2;
-                isTileSelected = true;
+                tileSelectedXOld = 1;
+                tileSelectedYOld = 2;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 1;
+                tileSelectedYNew = 2;
+                movePiece ();
             }
         }
     }
@@ -259,14 +275,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 1;
-                tileSelectedY = 3;
-                isTileSelected = true;
+                tileSelectedXOld = 1;
+                tileSelectedYOld = 3;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 1;
+                tileSelectedYNew = 3;
+                movePiece ();
             }
         }
     }
@@ -277,14 +294,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 1;
-                tileSelectedY = 4;
-                isTileSelected = true;
+                tileSelectedXOld = 1;
+                tileSelectedYOld = 4;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 1;
+                tileSelectedYNew = 4;
+                movePiece ();
             }
         }
     }
@@ -295,14 +313,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 2;
-                tileSelectedY = 0;
-                isTileSelected = true;
+                tileSelectedXOld = 2;
+                tileSelectedYOld = 0;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 2;
+                tileSelectedYNew = 0;
+                movePiece ();
             }
         }
     }
@@ -313,14 +332,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 2;
-                tileSelectedY = 1;
-                isTileSelected = true;
+                tileSelectedXOld = 2;
+                tileSelectedYOld = 1;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 2;
+                tileSelectedYNew = 1;
+                movePiece ();
             }
         }
     }
@@ -331,14 +351,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 2;
-                tileSelectedY = 2;
-                isTileSelected = true;
+                tileSelectedXOld = 2;
+                tileSelectedYOld = 2;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 2;
+                tileSelectedYNew = 2;
+                movePiece ();
             }
         }
     }
@@ -349,14 +370,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 2;
-                tileSelectedY = 3;
-                isTileSelected = true;
+                tileSelectedXOld = 2;
+                tileSelectedYOld = 3;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 2;
+                tileSelectedYNew = 3;
+                movePiece ();
             }
         }
     }
@@ -367,14 +389,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 2;
-                tileSelectedY = 4;
-                isTileSelected = true;
+                tileSelectedXOld = 2;
+                tileSelectedYOld = 4;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 2;
+                tileSelectedYNew = 4;
+                movePiece ();
             }
         }
     }
@@ -385,14 +408,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 3;
-                tileSelectedY = 0;
-                isTileSelected = true;
+                tileSelectedXOld = 3;
+                tileSelectedYOld = 0;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 3;
+                tileSelectedYNew = 0;
+                movePiece ();
             }
         }
     }
@@ -403,14 +427,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 3;
-                tileSelectedY = 1;
-                isTileSelected = true;
+                tileSelectedXOld = 3;
+                tileSelectedYOld = 1;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 3;
+                tileSelectedYNew = 1;
+                movePiece ();
             }
         }
     }
@@ -421,14 +446,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 3;
-                tileSelectedY = 2;
-                isTileSelected = true;
+                tileSelectedXOld = 3;
+                tileSelectedYOld = 2;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 3;
+                tileSelectedYNew = 2;
+                movePiece ();
             }
         }
     }
@@ -439,14 +465,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 3;
-                tileSelectedY = 3;
-                isTileSelected = true;
+                tileSelectedXOld = 3;
+                tileSelectedYOld = 3;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 3;
+                tileSelectedYNew = 3;
+                movePiece ();
             }
         }
     }
@@ -457,14 +484,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 3;
-                tileSelectedY = 4;
-                isTileSelected = true;
+                tileSelectedXOld = 3;
+                tileSelectedYOld = 4;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 3;
+                tileSelectedYNew = 4;
+                movePiece ();
             }
         }
     }
@@ -475,14 +503,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 4;
-                tileSelectedY = 0;
-                isTileSelected = true;
+                tileSelectedXOld = 4;
+                tileSelectedYOld = 0;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 4;
+                tileSelectedYNew = 0;
+                movePiece ();
             }
         }
     }
@@ -493,14 +522,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 4;
-                tileSelectedY = 1;
-                isTileSelected = true;
+                tileSelectedXOld = 4;
+                tileSelectedYOld = 1;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 4;
+                tileSelectedYNew = 1;
+                movePiece ();
             }
         }
     }
@@ -511,14 +541,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 4;
-                tileSelectedY = 2;
-                isTileSelected = true;
+                tileSelectedXOld = 4;
+                tileSelectedYOld = 2;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 4;
+                tileSelectedYNew = 2;
+                movePiece ();
             }
         }
     }
@@ -529,14 +560,15 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 4;
-                tileSelectedY = 3;
-                isTileSelected = true;
+                tileSelectedXOld = 4;
+                tileSelectedYOld = 3;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 4;
+                tileSelectedYNew = 3;
+                movePiece ();
             }
         }
     }
@@ -547,21 +579,22 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (isTileSelected == false)
             {
-                tileSelectedX = 4;
-                tileSelectedY = 4;
-                isTileSelected = true;
+                tileSelectedXOld = 4;
+                tileSelectedYOld = 4;
                 moveScan ();
             }
             else if (isTileSelected == true)
             {
-                isTileSelected = false;
+                tileSelectedXNew = 4;
+                tileSelectedYNew = 4;
+                movePiece ();
             }
         }
     }
 
     // Other Methods
 
-    public void assignTurn (boolean turn)
+    public void assignTurn ()
     {
         ImageView profilePicture1 = (ImageView) findViewById (R.id.profilePicture1);
         ImageView profilePicture2 = (ImageView) findViewById (R.id.profilePicture2);
@@ -778,13 +811,76 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles [4][4].setTag ("bluestudent");
     }
 
+    public void movePiece ()
+    {
+        if (turn)
+        {
+            if (boardTiles [tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState() && boardTiles [tileSelectedXOld][tileSelectedYOld] != boardTiles [tileSelectedXNew][tileSelectedYNew])
+            {
+                if (boardTiles [tileSelectedXOld][tileSelectedYOld].getTag () == "redstudent")
+                {
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redstudent);
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setTag("redstudent");
+
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setTag("");
+                }
+                else if (boardTiles [tileSelectedXOld][tileSelectedYOld].getTag () == "redmaster")
+                {
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redmaster);
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setTag("redmaster");
+
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setTag("");
+                }
+            }
+
+            turn = false;
+        }
+        else if (!turn)
+        {
+            if (boardTiles [tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState() && boardTiles [tileSelectedXOld][tileSelectedYOld] != boardTiles [tileSelectedXNew][tileSelectedYNew])
+            {
+                if (boardTiles [tileSelectedXOld][tileSelectedYOld].getTag () == "bluestudent")
+                {
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluestudent);
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setTag("bluestudent");
+
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setTag("");
+                }
+                else if (boardTiles [tileSelectedXOld][tileSelectedYOld].getTag () == "bluemaster")
+                {
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluemaster);
+                    boardTiles [tileSelectedXNew][tileSelectedYNew].setTag("bluemaster");
+
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
+                    boardTiles [tileSelectedXOld][tileSelectedYOld].setTag("");
+                }
+            }
+
+            turn = true;
+        }
+
+        for (int x = 0; x < boardTiles.length; x++)
+        {
+            for (int y = 0; y < boardTiles[x].length; y++)
+            {
+                boardTiles[x][y].setBackgroundResource(R.color.tile_color);
+            }
+        }
+
+        isTileSelected = false;
+        assignTurn ();
+    }
+
     public void moveScan ()
     {
         for (int x = 0; x < boardTiles.length; x++)
         {
             for (int y = 0; y < boardTiles[x].length; y++)
             {
-                if (boardTiles [x][y] != boardTiles [tileSelectedX][tileSelectedY])
+                if (boardTiles [x][y] != boardTiles [tileSelectedXOld][tileSelectedYOld])
                 {
                     boardTiles[x][y].setBackgroundResource(R.color.tile_color);
                 }
@@ -798,19 +894,21 @@ public class GameboardActivity extends AppCompatActivity {
         {
             if (turn)
             {
-                if (tileSelectedX + (xMoves [x] * -1) < 5 && tileSelectedY + (yMoves [x] * -1) < 5 && tileSelectedX + (xMoves [x] * -1) >= 0 && tileSelectedY + (yMoves [x] * -1) >= 0 && boardTiles [tileSelectedX + (xMoves [x] * -1)][tileSelectedY + (yMoves [x] * -1)].getTag () != "redstudent" && boardTiles [tileSelectedX + (xMoves [x] * -1)][tileSelectedY + (yMoves [x] * -1)].getTag () != "redmaster")
+                if (tileSelectedXOld + (xMoves [x] * -1) < 5 && tileSelectedYOld + (yMoves [x] * -1) < 5 && tileSelectedXOld + (xMoves [x] * -1) >= 0 && tileSelectedYOld + (yMoves [x] * -1) >= 0 && boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].getTag () != "redstudent" && boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].getTag () != "redmaster")
                 {
-                    boardTiles [tileSelectedX + (xMoves [x] * -1)][tileSelectedY + (yMoves [x] * -1)].setBackgroundResource(R.color.highlight);
+                    boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].setBackgroundResource(R.color.highlight);
                 }
             }
             else if (!turn)
             {
-                if (tileSelectedX + xMoves [x] < 5 && tileSelectedY + yMoves [x] < 5 && tileSelectedX + xMoves [x] >= 0 && tileSelectedY + yMoves [x] >= 0 && boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].getTag () != "bluestudent" && boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].getTag () != "bluemaster")
+                if (tileSelectedXOld + xMoves [x] < 5 && tileSelectedYOld + yMoves [x] < 5 && tileSelectedXOld + xMoves [x] >= 0 && tileSelectedYOld + yMoves [x] >= 0 && boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].getTag () != "bluestudent" && boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].getTag () != "bluemaster")
                 {
-                    boardTiles [tileSelectedX + xMoves [x]][tileSelectedY + yMoves [x]].setBackgroundResource(R.color.highlight);
+                    boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].setBackgroundResource(R.color.highlight);
                 }
             }
         }
+
+        isTileSelected = true;
     }
 
     public void tileScan ()
