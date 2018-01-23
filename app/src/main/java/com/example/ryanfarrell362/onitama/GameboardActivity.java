@@ -1,6 +1,8 @@
 package com.example.ryanfarrell362.onitama;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -63,16 +65,10 @@ public class GameboardActivity extends AppCompatActivity {
         tileAssigner (boardTiles); // Fills 2D array of board tiles
         turn = firstTurn (gameCards, turn); // Determine who goes first
 
-        // Game Start
-        assignTurn (); // Assign who goes
-        // Choose card (DONE)
-        // Choose piece
-        // Move piece
-        // Swap cards
-        // Check for win
-
-        // Necessary things
-        // ArrayLists for blue and red pieces (ResID's)
+        if (gameOver == 0)
+        {
+            assignTurn ();
+        }
     }
 
     //Card Listeners
@@ -978,7 +974,7 @@ public class GameboardActivity extends AppCompatActivity {
 
         for (int x = 0; x < boardTiles.length; x ++)
         {
-            for (int y = 0; x < boardTiles [x].length; x ++)
+            for (int y = 0; y < boardTiles [x].length; y ++)
             {
                 if (boardTiles [x][y].getTag () == "redmaster")
                 {
@@ -1009,6 +1005,38 @@ public class GameboardActivity extends AppCompatActivity {
 
     public void victoryScreen ()
     {
+        if (gameOver == 2)
+        {
+            AlertDialog redWin = new AlertDialog.Builder(GameboardActivity.this).create();
+            redWin.setTitle("Game Over");
+            redWin.setMessage("Red wins!");
+            redWin.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
 
+            redWin.show();
+        }
+        else if (gameOver == 1)
+        {
+            AlertDialog blueWin = new AlertDialog.Builder(GameboardActivity.this).create();
+            blueWin.setTitle("Game Over");
+            blueWin.setMessage("Blue wins!");
+            blueWin.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            blueWin.show();
+        }
+
+        gameCardPictures [0].setOnClickListener(null);
+        gameCardPictures [1].setOnClickListener(null);
+        gameCardPictures [2].setOnClickListener(null);
+        gameCardPictures [3].setOnClickListener(null);
     }
 }
