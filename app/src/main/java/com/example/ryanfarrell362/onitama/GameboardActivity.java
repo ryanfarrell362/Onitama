@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Bugs
-// - There can be duplicate cards in game
 // - Can lose turn by clicking on own piece
 
 public class GameboardActivity extends AppCompatActivity {
@@ -669,6 +668,11 @@ public class GameboardActivity extends AppCompatActivity {
 
     public static ArrayList cardInitialization (ArrayList cards)
     {
+        for (int x = cards.size () - 1; x >= 0; x --)
+        {
+            cards.remove (x);
+        }
+
         int [] tempArray1X = {0, -1, 1};
         int [] tempArray1Y = {-2, -1, 1};
         Card frog = new Card ("Frog", tempArray1X, tempArray1Y, 'r');
