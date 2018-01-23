@@ -929,7 +929,7 @@ public class GameboardActivity extends AppCompatActivity {
         gameCardPictures [cardSelectedInt].setImageResource(gameCardIDs [cardSelectedInt]);
         gameCardPictures [4].setImageResource(gameCardIDs [4]);
 
-        assignTurn ();
+        checkForWin ();
     }
 
     public void tileScan ()
@@ -969,5 +969,46 @@ public class GameboardActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void checkForWin ()
+    {
+        boolean isRedMaster = false;
+        boolean isBlueMaster = false;
+
+        for (int x = 0; x < boardTiles.length; x ++)
+        {
+            for (int y = 0; x < boardTiles [x].length; x ++)
+            {
+                if (boardTiles [x][y].getTag () == "redmaster")
+                {
+                    isRedMaster = true;
+                }
+                else if (boardTiles [x][y].getTag () == "bluemaster")
+                {
+                    isBlueMaster = true;
+                }
+            }
+
+            if (isBlueMaster == false || boardTiles [4][2].getTag () == "redmaster")
+            {
+                gameOver = 2;
+                victoryScreen ();
+            }
+            else if (isRedMaster == false || boardTiles [0][2].getTag () == "bluemaster")
+            {
+                gameOver = 1;
+                victoryScreen ();
+            }
+            else
+            {
+                assignTurn ();
+            }
+        }
+    }
+
+    public void victoryScreen ()
+    {
+
     }
 }
