@@ -903,6 +903,10 @@ public class GameboardActivity extends AppCompatActivity {
                     boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].setBackgroundResource(R.color.highlight);
                     isTileSelected = true;
                 }
+                else
+                {
+                    isTileSelected = false;
+                }
             }
             else if (!turn)
             {
@@ -911,10 +915,10 @@ public class GameboardActivity extends AppCompatActivity {
                     boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].setBackgroundResource(R.color.highlight);
                     isTileSelected = true;
                 }
-            }
-            else
-            {
-                isTileSelected = false;
+                else
+                {
+                    isTileSelected = false;
+                }
             }
         }
     }
