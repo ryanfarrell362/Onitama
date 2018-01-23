@@ -14,6 +14,7 @@ import java.util.Random;
 // Bugs
 // - There can be duplicate cards in game
 // - Can lose turn by clicking on own piece
+// - Can only start new game after win/lose by clearing app and restarting
 
 public class GameboardActivity extends AppCompatActivity {
 
@@ -976,30 +977,31 @@ public class GameboardActivity extends AppCompatActivity {
         {
             for (int y = 0; y < boardTiles [x].length; y ++)
             {
-                if (boardTiles [x][y].getTag () == "redmaster")
+                if (boardTiles [x][y].getTag () == "redmaster" && isRedMaster == false)
                 {
                     isRedMaster = true;
                 }
-                else if (boardTiles [x][y].getTag () == "bluemaster")
+
+                if (boardTiles [x][y].getTag () == "bluemaster" && isBlueMaster == false)
                 {
                     isBlueMaster = true;
                 }
             }
+        }
 
-            if (isBlueMaster == false || boardTiles [4][2].getTag () == "redmaster")
-            {
-                gameOver = 2;
-                victoryScreen ();
-            }
-            else if (isRedMaster == false || boardTiles [0][2].getTag () == "bluemaster")
-            {
-                gameOver = 1;
-                victoryScreen ();
-            }
-            else
-            {
-                assignTurn ();
-            }
+        if (isBlueMaster == false || boardTiles [4][2].getTag () == "redmaster")
+        {
+            gameOver = 2;
+            victoryScreen ();
+        }
+        else if (isRedMaster == false || boardTiles [0][2].getTag () == "bluemaster")
+        {
+            gameOver = 1;
+            victoryScreen ();
+        }
+        else
+        {
+            assignTurn();
         }
     }
 
