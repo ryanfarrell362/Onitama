@@ -11,6 +11,7 @@ import java.util.Random;
 
 // Bugs
 // - There can be duplicate cards in game
+// - Can lose turn by clicking on own piece
 
 public class GameboardActivity extends AppCompatActivity {
 
