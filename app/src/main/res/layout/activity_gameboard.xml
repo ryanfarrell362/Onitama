@@ -117,6 +117,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
             android:layout_column="0"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn6"/>
@@ -127,6 +128,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
             android:layout_column="1"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn7"/>
@@ -137,6 +139,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
             android:layout_column="2"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn8"/>
@@ -147,6 +150,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
             android:layout_column="3"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn9"/>
@@ -157,6 +161,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="1"
             android:layout_column="4"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn10"/>
@@ -167,6 +172,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
             android:layout_column="0"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn11"/>
@@ -177,6 +183,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
             android:layout_column="1"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn12"/>
@@ -187,6 +194,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
             android:layout_column="2"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn13"/>
@@ -197,6 +205,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
             android:layout_column="3"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn14"/>
@@ -207,6 +216,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="2"
             android:layout_column="4"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn15"/>
@@ -217,6 +227,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
             android:layout_column="0"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn16"/>
@@ -227,6 +238,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
             android:layout_column="1"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn17"/>
@@ -237,6 +249,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
             android:layout_column="2"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn18"/>
@@ -247,6 +260,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
             android:layout_column="3"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn19"/>
@@ -257,6 +271,7 @@
             android:layout_height="@dimen/board_tile_width"
             android:layout_row="3"
             android:layout_column="4"
+            android:src="@android:color/transparent"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:onClick="btn20"/>
