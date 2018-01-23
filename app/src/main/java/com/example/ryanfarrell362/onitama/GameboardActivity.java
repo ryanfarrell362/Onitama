@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Random;
 
+// Bugs
+// - Can click on own piece and lose turn
+// - There can be duplicate cards in game
+
 public class GameboardActivity extends AppCompatActivity {
 
     static Card cardSelected;
@@ -908,6 +912,10 @@ public class GameboardActivity extends AppCompatActivity {
                     isTileSelected = true;
                 }
             }
+            else
+            {
+                isTileSelected = false;
+            }
         }
     }
 
@@ -922,8 +930,8 @@ public class GameboardActivity extends AppCompatActivity {
         gameCardIDs [cardSelectedInt] = gameCardIDs [4];
         gameCardIDs [4] = tempInt;
 
-        gameCardPictures [cardSelectedInt].setBackgroundResource(gameCardIDs [4]);
-        gameCardPictures [4].setBackgroundResource(gameCardIDs [cardSelectedInt]);
+        gameCardPictures [cardSelectedInt].setImageResource(gameCardIDs [cardSelectedInt]);
+        gameCardPictures [4].setImageResource(gameCardIDs [4]);
 
         assignTurn ();
     }
