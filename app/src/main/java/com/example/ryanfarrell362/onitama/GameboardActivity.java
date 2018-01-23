@@ -897,6 +897,7 @@ public class GameboardActivity extends AppCompatActivity {
                 if (tileSelectedXOld + (xMoves [x] * -1) < 5 && tileSelectedYOld + (yMoves [x] * -1) < 5 && tileSelectedXOld + (xMoves [x] * -1) >= 0 && tileSelectedYOld + (yMoves [x] * -1) >= 0 && boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].getTag () != "redstudent" && boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].getTag () != "redmaster")
                 {
                     boardTiles [tileSelectedXOld + (xMoves [x] * -1)][tileSelectedYOld + (yMoves [x] * -1)].setBackgroundResource(R.color.highlight);
+                    isTileSelected = true;
                 }
             }
             else if (!turn)
@@ -904,11 +905,10 @@ public class GameboardActivity extends AppCompatActivity {
                 if (tileSelectedXOld + xMoves [x] < 5 && tileSelectedYOld + yMoves [x] < 5 && tileSelectedXOld + xMoves [x] >= 0 && tileSelectedYOld + yMoves [x] >= 0 && boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].getTag () != "bluestudent" && boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].getTag () != "bluemaster")
                 {
                     boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].setBackgroundResource(R.color.highlight);
+                    isTileSelected = true;
                 }
             }
         }
-
-        isTileSelected = true;
     }
 
     // Need to fix this
