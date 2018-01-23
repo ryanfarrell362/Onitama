@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Bugs
-// - Can click on own piece and lose turn
 // - There can be duplicate cards in game
 
 public class GameboardActivity extends AppCompatActivity {
