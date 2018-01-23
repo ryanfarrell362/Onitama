@@ -11,9 +11,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Random;
 
-// Bugs
-// - Can lose turn by clicking on own piece
-
 public class GameboardActivity extends AppCompatActivity {
 
     static Card cardSelected;
@@ -838,9 +835,14 @@ public class GameboardActivity extends AppCompatActivity {
                     boardTiles [tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
                     boardTiles [tileSelectedXOld][tileSelectedYOld].setTag("");
                 }
-            }
 
-            turn = false;
+                turn = false;
+            }
+            else
+            {
+                isTileSelected = false;
+                resetBoard ();
+            }
         }
         else if (!turn)
         {
@@ -862,9 +864,14 @@ public class GameboardActivity extends AppCompatActivity {
                     boardTiles [tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
                     boardTiles [tileSelectedXOld][tileSelectedYOld].setTag("");
                 }
-            }
 
-            turn = true;
+                turn = true;
+            }
+            else
+            {
+                isTileSelected = false;
+                resetBoard ();
+            }
         }
 
         for (int x = 0; x < boardTiles.length; x++)
@@ -875,9 +882,12 @@ public class GameboardActivity extends AppCompatActivity {
             }
         }
 
-        isCardSelected = false;
-        isTileSelected = false;
-        cardSwap();
+        if (isTileSelected == true && isCardSelected == true)
+        {
+            isCardSelected = false;
+            isTileSelected = false;
+            cardSwap();
+        }
     }
 
     public void moveScan ()
@@ -913,6 +923,17 @@ public class GameboardActivity extends AppCompatActivity {
                     boardTiles [tileSelectedXOld + xMoves [x]][tileSelectedYOld + yMoves [x]].setBackgroundResource(R.color.highlight);
                     isTileSelected = true;
                 }
+            }
+        }
+    }
+
+    public void resetBoard ()
+    {
+        for (int x = 0; x < boardTiles.length; x ++)
+        {
+            for (int y = 0; y < boardTiles [x].length; y ++)
+            {
+                boardTiles [x][y].setBackgroundResource(R.color.tile_color);
             }
         }
     }
