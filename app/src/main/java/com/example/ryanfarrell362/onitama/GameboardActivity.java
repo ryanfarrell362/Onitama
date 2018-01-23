@@ -14,7 +14,6 @@ import java.util.Random;
 // Bugs
 // - There can be duplicate cards in game
 // - Can lose turn by clicking on own piece
-// - Can only start new game after win/lose by clearing app and restarting
 
 public class GameboardActivity extends AppCompatActivity {
 
@@ -65,6 +64,8 @@ public class GameboardActivity extends AppCompatActivity {
         cardDealer (cards, gameCards, gameCardIDs); // Deal out cards
         tileAssigner (boardTiles); // Fills 2D array of board tiles
         turn = firstTurn (gameCards, turn); // Determine who goes first
+
+        gameOver = 0;
 
         if (gameOver == 0)
         {
