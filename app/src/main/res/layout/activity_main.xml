@@ -15,45 +15,46 @@
     <ImageView
         android:layout_width="@dimen/title_image_width"
         android:layout_height="@dimen/title_image_height"
-        android:src="@mipmap/onitama" />
+        android:src="@mipmap/onitama"
+        android:contentDescription="@string/desc" />
 
     <Button
         android:id="@+id/play_button"
-        android:layout_marginLeft="@dimen/button_horizontal_margin"
+        android:layout_marginStart="@dimen/button_horizontal_margin"
         android:layout_marginTop="@dimen/button_vertical_margin"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:text="PLAY"
+        android:text="@string/play"
         android:textSize="@dimen/button_textsize"
         android:textColor="@color/colorPrimaryDark"
         android:onClick="game"/>
 
     <Button
         android:id="@+id/info_button"
-        android:layout_marginLeft="@dimen/button_horizontal_margin"
+        android:layout_marginStart="@dimen/button_horizontal_margin"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:text="INFO"
+        android:text="@string/info"
         android:textSize="@dimen/button_textsize"
         android:textColor="@color/colorPrimaryDark"
         android:onClick="info"/>
 
     <Button
         android:id="@+id/settings_button"
-        android:layout_marginLeft="@dimen/button_horizontal_margin"
+        android:layout_marginStart="@dimen/button_horizontal_margin"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:text="SETTINGS"
+        android:text="@string/settings"
         android:textSize="@dimen/button_textsize"
         android:textColor="@color/colorPrimaryDark"
         android:onClick="settings"/>
 
     <Button
         android:id="@+id/about_button"
-        android:layout_marginLeft="@dimen/button_horizontal_margin"
+        android:layout_marginStart="@dimen/button_horizontal_margin"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:text="ABOUT"
+        android:text="@string/about"
         android:textSize="@dimen/button_textsize"
         android:textColor="@color/colorPrimaryDark"
         android:onClick="about"/>

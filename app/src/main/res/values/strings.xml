@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Onitama</string>
     <string name="game">Game</string>
-    <string name="settings">Settings</string>
-    <string name="info">Information</string>
-    <string name="about">About</string>
+    <string name="settings_internal">Settings</string>
+    <string name="info_internal">Information</string>
+    <string name="about_internal">About</string>
     <string name="desc">null</string>
+    <string name="play">PLAY</string>
+    <string name="info">INFO</string>
+    <string name="about">ABOUT</string>
+    <string name="settings">SETTINGS</string>
 </resources>
