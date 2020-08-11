@@ -22,7 +22,7 @@
             android:rotation="180"
             android:background="@mipmap/cardtemplate"
             android:scaleType="fitXY"
-            android:onClick="player1Card1"/>
+            android:onClick="player1Card1" />
 
         <ImageButton
             android:id="@+id/player1Card2"
@@ -363,7 +363,7 @@
                 android:id="@+id/profilePicture1"
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
-                android:layout_marginLeft="@dimen/profile_picture_margin_left"
+                android:layout_marginStart="@dimen/profile_picture_margin_left"
                 android:background="@color/background_color"
                 android:padding="@dimen/profile_picture_border_padding"
                 android:rotation="180"
@@ -413,7 +413,7 @@
             android:id="@+id/player2Card2"
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
-            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginStart="@dimen/card_margin"
             android:background="@mipmap/cardtemplate"
             android:scaleType="fitXY"
             android:onClick="player2Card2"/>
