@@ -43,7 +43,7 @@ public class GameboardActivity extends AppCompatActivity {
     public static boolean turn = false;
     public static int gameOver = 0;
 
-    public static ArrayList<Card> cardInitialization(ArrayList<Card> cards) {
+    public static void cardInitialization (ArrayList<Card> cards) {
         if (cards.size() > 0) {
             cards.subList(0, cards.size()).clear();
         }
@@ -129,7 +129,6 @@ public class GameboardActivity extends AppCompatActivity {
         cards.add(boar);
         cards.add(horse);
 
-        return cards;
     }
 
     //Card Listeners
@@ -597,7 +596,7 @@ public class GameboardActivity extends AppCompatActivity {
         cardAssigner (cards, middleCard, gameCards, gameCardIDs, arrayValue);
     }
 
-    public ArrayList<Card> cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
+    public void cardAssigner (ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
         Random numGen = new Random();
 
         int randNum = numGen.nextInt(cards.size());
@@ -610,7 +609,6 @@ public class GameboardActivity extends AppCompatActivity {
         card.setImageResource(resID);
         cards.remove (randNum);
 
-        return cards;
     }
 
     public boolean firstTurn (Card [] gameCards, boolean turn)
