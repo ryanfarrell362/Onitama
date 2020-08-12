@@ -205,6 +205,8 @@ public class GameboardActivity extends AppCompatActivity {
 
     // Once a card has been selected, the board is scanned for all of a player's pieces which can be moved and highlights them
     public void tileScan() {
+        resetBoard ();
+
         for (ImageButton[] boardTile : boardTiles) {
             for (ImageButton imageButton : boardTile) {
                 if ((turn && (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster")) || (!turn && (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster"))) {
@@ -417,8 +419,6 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    // Tile Listeners
-
     public void player2Card2(View view) {
         if (!turn) {
             cardSelected = gameCards[3];
@@ -429,351 +429,44 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    public void btn1(View view) {
-        if (boardTiles[0][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
+    // Tile Listeners
 
-    public void btn2(View view) {
-        if (boardTiles[0][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
+    public void btn1(View view) { buttonAction (0, 0); }
+    public void btn2(View view) { buttonAction (0, 1); }
+    public void btn3(View view) { buttonAction (0, 2); }
+    public void btn4(View view) { buttonAction (0, 3); }
+    public void btn5(View view) { buttonAction (0, 4); }
+    public void btn6(View view) { buttonAction (1, 0); }
+    public void btn7(View view) { buttonAction (1, 1); }
+    public void btn8(View view) { buttonAction (1, 2); }
+    public void btn9(View view) { buttonAction (1, 3); }
+    public void btn10(View view) { buttonAction (1, 4); }
+    public void btn11(View view) { buttonAction (2, 0); }
+    public void btn12(View view) { buttonAction (2, 1); }
+    public void btn13(View view) { buttonAction (2, 2); }
+    public void btn14(View view) { buttonAction (2, 3); }
+    public void btn15(View view) { buttonAction (2, 4); }
+    public void btn16(View view) { buttonAction (3, 0); }
+    public void btn17(View view) { buttonAction (3, 1); }
+    public void btn18(View view) { buttonAction (3, 2); }
+    public void btn19(View view) { buttonAction (3, 3); }
+    public void btn20(View view) { buttonAction (3, 4); }
+    public void btn21(View view) { buttonAction (4, 0); }
+    public void btn22(View view) { buttonAction (4, 1); }
+    public void btn23(View view) { buttonAction (4, 2); }
+    public void btn24(View view) { buttonAction (4, 3); }
+    public void btn25(View view) { buttonAction (4, 4); }
 
-    public void btn3(View view) {
-        if (boardTiles[0][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
+    // Performed whenever a button on the gameboard is pressed when valid
+    public void buttonAction (int x, int y) {
+        if (boardTiles[x][y].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
             if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 2;
+                tileSelectedXOld = x;
+                tileSelectedYOld = y;
                 moveScan();
             } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn4(View view) {
-        if (boardTiles[0][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn5(View view) {
-        if (boardTiles[0][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn6(View view) {
-        if (boardTiles[1][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn7(View view) {
-        if (boardTiles[1][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn8(View view) {
-        if (boardTiles[1][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn9(View view) {
-        if (boardTiles[1][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn10(View view) {
-        if (boardTiles[1][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn11(View view) {
-        if (boardTiles[2][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn12(View view) {
-        if (boardTiles[2][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn13(View view) {
-        if (boardTiles[2][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn14(View view) {
-        if (boardTiles[2][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn15(View view) {
-        if (boardTiles[2][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn16(View view) {
-        if (boardTiles[3][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn17(View view) {
-        if (boardTiles[3][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn18(View view) {
-        if (boardTiles[3][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn19(View view) {
-        if (boardTiles[3][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn20(View view) {
-        if (boardTiles[3][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn21(View view) {
-        if (boardTiles[4][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn22(View view) {
-        if (boardTiles[4][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn23(View view) {
-        if (boardTiles[4][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn24(View view) {
-        if (boardTiles[4][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn25(View view) {
-        if (boardTiles[4][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 4;
+                tileSelectedXNew = x;
+                tileSelectedYNew = y;
                 movePiece();
             }
         }
