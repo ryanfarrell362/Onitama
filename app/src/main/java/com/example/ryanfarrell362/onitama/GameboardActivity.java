@@ -73,88 +73,24 @@ public class GameboardActivity extends AppCompatActivity {
             cards.subList(0, cards.size()).clear();
         }
 
-        // Creating the card object for all 16 cards
-        int[] tempArray1X = {0, -1, 1};
-        int[] tempArray1Y = {-2, -1, 1};
-        Card frog = new Card("Frog", tempArray1X, tempArray1Y, 'r');
-
-        int[] tempArray2X = {-1, 0, 0, 1};
-        int[] tempArray2Y = {-1, -1, 1, 1};
-        Card goose = new Card("Goose", tempArray2X, tempArray2Y, 'b');
-
-        int[] tempArray3X = {1, -1, 0};
-        int[] tempArray3Y = {-1, 1, 2};
-        Card rabbit = new Card("Rabbit", tempArray3X, tempArray3Y, 'b');
-
-        int[] tempArray4X = {-1, 1, -1};
-        int[] tempArray4Y = {-1, 0, 1};
-        Card mantis = new Card("Mantis", tempArray4X, tempArray4Y, 'r');
-
-        int[] tempArray5X = {0, -1, 1};
-        int[] tempArray5Y = {-1, 1, 1};
-        Card cobra = new Card("Cobra", tempArray5X, tempArray5Y, 'r');
-
-        int[] tempArray6X = {-1, 0, -1, 0};
-        int[] tempArray6Y = {-1, -1, 1, 1};
-        Card elephant = new Card("Elephant", tempArray6X, tempArray6Y, 'r');
-
-        int[] tempArray7X = {1, -1, 1};
-        int[] tempArray7Y = {-1, 0, 1};
-        Card crane = new Card("Crane", tempArray7X, tempArray7Y, 'b');
-
-        int[] tempArray8X = {-1, 1, -1, 1};
-        int[] tempArray8Y = {-1, -1, 1, 1};
-        Card monkey = new Card("Monkey", tempArray8X, tempArray8Y, 'b');
-
-        int[] tempArray9X = {0, -1, 0};
-        int[] tempArray9Y = {-2, 0, 2};
-        Card crab = new Card("Crab", tempArray9X, tempArray9Y, 'b');
-
-        int[] tempArray10X = {0, 1, -1, 0};
-        int[] tempArray10Y = {-1, -1, 1, 1};
-        Card rooster = new Card("Rooster", tempArray10X, tempArray10Y, 'r');
-
-        int[] tempArray11X = {-2, 1};
-        int[] tempArray11Y = {0, 0};
-        Card tiger = new Card("Tiger", tempArray11X, tempArray11Y, 'b');
-
-        int[] tempArray12X = {-1, 1, 0};
-        int[] tempArray12Y = {0, 0, 1};
-        Card ox = new Card("Ox", tempArray12X, tempArray12Y, 'b');
-
-        int[] tempArray13X = {-1, 1, 1, -1};
-        int[] tempArray13Y = {-2, -1, 1, 2};
-        Card dragon = new Card("Dragon", tempArray13X, tempArray13Y, 'r');
-
-        int[] tempArray14X = {-1, 1, 0};
-        int[] tempArray14Y = {-1, -1, 1};
-        Card eel = new Card("Eel", tempArray14X, tempArray14Y, 'b');
-
-        int[] tempArray15X = {0, -1, 0};
-        int[] tempArray15Y = {-1, 0, 1};
-        Card boar = new Card("Boar", tempArray15X, tempArray15Y, 'r');
-
-        int[] tempArray16X = {0, -1, 1};
-        int[] tempArray16Y = {-1, 0, 0};
-        Card horse = new Card("Horse", tempArray16X, tempArray16Y, 'r');
-
-        // Adding the cards to the deck
-        cards.add(frog);
-        cards.add(goose);
-        cards.add(rabbit);
-        cards.add(mantis);
-        cards.add(cobra);
-        cards.add(elephant);
-        cards.add(crane);
-        cards.add(monkey);
-        cards.add(crab);
-        cards.add(rooster);
-        cards.add(tiger);
-        cards.add(ox);
-        cards.add(dragon);
-        cards.add(eel);
-        cards.add(boar);
-        cards.add(horse);
+        // Creates each card using the Card class then adds it to the deck
+        // X and Y movements are hardcoded in order below
+        cards.add(new Card("Frog", new int[]{0, -1, 1}, new int[]{-2, -1, 1}, 'r'));
+        cards.add(new Card("Goose", new int[]{-1, 0, 0, 1}, new int[]{-1, -1, 1, 1}, 'b'));
+        cards.add(new Card("Rabbit", new int[]{1, -1, 0}, new int[]{-1, 1, 2}, 'b'));
+        cards.add(new Card("Mantis", new int[]{-1, 1, -1}, new int[]{-1, 0, 1}, 'r'));
+        cards.add(new Card("Cobra", new int[]{0, -1, 1}, new int[]{-1, 1, 1}, 'r'));
+        cards.add(new Card("Elephant", new int[]{-1, 0, -1, 0}, new int[]{-1, -1, 1, 1}, 'r'));
+        cards.add(new Card("Crane", new int[]{1, -1, 1}, new int[]{-1, 0, 1}, 'b'));
+        cards.add(new Card("Monkey", new int[]{-1, 1, -1, 1}, new int[]{-1, -1, 1, 1}, 'b'));
+        cards.add(new Card("Crab", new int[]{0, -1, 0}, new int[]{-2, 0, 2}, 'b'));
+        cards.add(new Card("Rooster", new int[]{0, 1, -1, 0}, new int[]{-1, -1, 1, 1}, 'r'));
+        cards.add(new Card("Tiger", new int[]{-2, 1}, new int[]{0, 0}, 'b'));
+        cards.add(new Card("Ox", new int[]{-1, 1, 0}, new int[]{0, 0, 1}, 'b'));
+        cards.add(new Card("Dragon", new int[]{-1, 1, 1, -1}, new int[]{-2, -1, 1, 2}, 'r'));
+        cards.add(new Card("Eel", new int[]{-1, 1, 0}, new int[]{-1, -1, 1}, 'b'));
+        cards.add(new Card("Boar", new int[]{0, -1, 0}, new int[]{-1, 0, 1}, 'r'));
+        cards.add(new Card("Horse", new int[]{0, -1, 1}, new int[]{-1, 0, 0}, 'r'));
     }
 
     // Generates the 5 cards which will be used for a match
@@ -280,14 +216,9 @@ public class GameboardActivity extends AppCompatActivity {
 
 
     public void moveScan() {
-        // After selecting a piece to move, any piece that was previously highlighted is returned to the original state if it was not the piece selected
-        for (ImageButton[] boardTile : boardTiles) {
-            for (ImageButton imageButton : boardTile) {
-                if (imageButton != boardTiles[tileSelectedXOld][tileSelectedYOld]) {
-                    imageButton.setBackgroundResource(R.color.tile_color);
-                }
-            }
-        }
+        // After selecting a piece to move, the board is reset to its original colour and only the selected piece is highlighted
+        resetBoard();
+        boardTiles [tileSelectedXOld][tileSelectedYOld].setBackgroundResource(R.color.highlight);
 
         int[] xMoves = cardSelected.getXMoves();
         int[] yMoves = cardSelected.getYMoves();
