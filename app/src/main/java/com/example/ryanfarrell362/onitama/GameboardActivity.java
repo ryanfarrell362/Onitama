@@ -43,6 +43,29 @@ public class GameboardActivity extends AppCompatActivity {
     public static boolean turn = false;
     public static int gameOver = 0;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gameboard);
+
+        // Game Pieces (Might not be needed)
+        blueStudentID = getResources().getIdentifier("bluestudent", "mipmap", getPackageName());
+        blueMasterID = getResources().getIdentifier("bluemaster", "mipmap", getPackageName());
+
+        redStudentID = getResources().getIdentifier("redstudent", "mipmap", getPackageName());
+        redMasterID = getResources().getIdentifier("redmaster", "mipmap", getPackageName());
+
+        // Game Initialization
+        cardInitialization(cards); // Setup cards
+        cardDealer(cards, gameCards, gameCardIDs); // Deal out cards
+        tileAssigner(boardTiles); // Fills 2D array of board tiles
+        turn = firstTurn(gameCards); // Determine who goes first
+
+        gameOver = 0; // Set variable to default state as the game has just started
+
+        assignTurn();
+    }
+
     public static void cardInitialization(ArrayList<Card> cards) {
         if (cards.size() > 0) {
             cards.subList(0, cards.size()).clear();
@@ -130,47 +153,10 @@ public class GameboardActivity extends AppCompatActivity {
         cards.add(horse);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameboard);
-
-        // Game Pieces (Might not be needed)
-        blueStudentID = getResources().getIdentifier("bluestudent", "mipmap", getPackageName());
-        blueMasterID = getResources().getIdentifier("bluemaster", "mipmap", getPackageName());
-
-        redStudentID = getResources().getIdentifier("redstudent", "mipmap", getPackageName());
-        redMasterID = getResources().getIdentifier("redmaster", "mipmap", getPackageName());
-
-        // Game Initialization
-        cardInitialization(cards); // Setup cards
-        cardDealer(cards, gameCards, gameCardIDs); // Deal out cards
-        tileAssigner(boardTiles); // Fills 2D array of board tiles
-        turn = firstTurn(gameCards); // Determine who goes first
-
-        gameOver = 0; // Set variable to default state as the game has just started
-
-        assignTurn();
-    }
-
-    public void assignTurn() {
-        ImageView profilePicture1 = (ImageView) findViewById(R.id.profilePicture1);
-        ImageView profilePicture2 = (ImageView) findViewById(R.id.profilePicture2);
-
-        if (!turn) {
-            profilePicture2.setBackgroundResource(R.color.highlight);
-            profilePicture1.setBackgroundResource(R.color.background_color);
-        } else {
-            profilePicture1.setBackgroundResource(R.color.highlight);
-            profilePicture2.setBackgroundResource(R.color.background_color);
-        }
-    }
-
     public void cardDealer(ArrayList<Card> cards, Card[] gameCards, int[] gameCardIDs) {
         int arrayValue = 0;
 
         // Need an array of image buttons
-
         ImageButton player1Card1 = (ImageButton) findViewById(R.id.player1Card1);
         gameCardPictures[0] = player1Card1;
         cardAssigner(cards, player1Card1, gameCards, gameCardIDs, arrayValue);
@@ -194,26 +180,6 @@ public class GameboardActivity extends AppCompatActivity {
         ImageButton middleCard = (ImageButton) findViewById(R.id.middleCard);
         gameCardPictures[4] = middleCard;
         cardAssigner(cards, middleCard, gameCards, gameCardIDs, arrayValue);
-    }
-
-    public void cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
-        Random numGen = new Random();
-
-        int randNum = numGen.nextInt(cards.size());
-        Card chosenCard = cards.get(randNum);
-        gameCards[arrayValue] = chosenCard;
-        String name = chosenCard.getName();
-        int resID = getResources().getIdentifier(name.toLowerCase(), "mipmap", getPackageName());
-        gameCardIDs[arrayValue] = resID;
-
-        card.setImageResource(resID);
-        cards.remove(randNum);
-    }
-
-    // Sets the first turn based on the colour of the middle card
-    public boolean firstTurn(Card[] gameCards) {
-        // Returns false for blue, and true for red
-        return gameCards[4].getColour() == 'r';
     }
 
     public void tileAssigner(ImageButton[][] boardTiles) {
@@ -258,6 +224,91 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles[4][2].setTag("bluemaster");
         boardTiles[4][3].setTag("bluestudent");
         boardTiles[4][4].setTag("bluestudent");
+    }
+
+    // Sets the first turn based on the colour of the middle card
+    public boolean firstTurn(Card[] gameCards) {
+        // Returns false for blue, and true for red
+        return gameCards[4].getColour() == 'r';
+    }
+
+    public void assignTurn() {
+        ImageView profilePicture1 = (ImageView) findViewById(R.id.profilePicture1);
+        ImageView profilePicture2 = (ImageView) findViewById(R.id.profilePicture2);
+
+        if (!turn) {
+            profilePicture2.setBackgroundResource(R.color.highlight);
+            profilePicture1.setBackgroundResource(R.color.background_color);
+        } else {
+            profilePicture1.setBackgroundResource(R.color.highlight);
+            profilePicture2.setBackgroundResource(R.color.background_color);
+        }
+    }
+
+    public void cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
+        Random numGen = new Random();
+
+        int randNum = numGen.nextInt(cards.size());
+        Card chosenCard = cards.get(randNum);
+        gameCards[arrayValue] = chosenCard;
+        String name = chosenCard.getName();
+        int resID = getResources().getIdentifier(name.toLowerCase(), "mipmap", getPackageName());
+        gameCardIDs[arrayValue] = resID;
+
+        card.setImageResource(resID);
+        cards.remove(randNum);
+    }
+
+    // Once a card has been selected, the board is scanned for all of a player's pieces which can be moved and highlights them
+    public void tileScan() {
+        if (turn) {
+            for (ImageButton[] boardTile : boardTiles) {
+                for (ImageButton imageButton : boardTile) {
+                    if (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster") {
+                        imageButton.setBackgroundResource(R.color.highlight);
+                    } else {
+                        imageButton.setBackgroundResource(R.color.tile_color);
+                    }
+                }
+            }
+        } else {
+            for (ImageButton[] boardTile : boardTiles) {
+                for (ImageButton imageButton : boardTile) {
+                    if (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster") {
+                        imageButton.setBackgroundResource(R.color.highlight);
+                    } else {
+                        imageButton.setBackgroundResource(R.color.tile_color);
+                    }
+                }
+            }
+        }
+    }
+
+    public void moveScan() {
+        for (ImageButton[] boardTile : boardTiles) {
+            for (ImageButton imageButton : boardTile) {
+                if (imageButton != boardTiles[tileSelectedXOld][tileSelectedYOld]) {
+                    imageButton.setBackgroundResource(R.color.tile_color);
+                }
+            }
+        }
+
+        int[] xMoves = cardSelected.getXMoves();
+        int[] yMoves = cardSelected.getYMoves();
+
+        for (int x = 0; x < cardSelected.getXMoves().length; x++) {
+            if (turn) {
+                if (tileSelectedXOld + (xMoves[x] * -1) < 5 && tileSelectedYOld + (yMoves[x] * -1) < 5 && tileSelectedXOld + (xMoves[x] * -1) >= 0 && tileSelectedYOld + (yMoves[x] * -1) >= 0 && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redstudent" && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redmaster") {
+                    boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].setBackgroundResource(R.color.highlight);
+                    isTileSelected = true;
+                }
+            } else {
+                if (tileSelectedXOld + xMoves[x] < 5 && tileSelectedYOld + yMoves[x] < 5 && tileSelectedXOld + xMoves[x] >= 0 && tileSelectedYOld + yMoves[x] >= 0 && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluestudent" && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluemaster") {
+                    boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].setBackgroundResource(R.color.highlight);
+                    isTileSelected = true;
+                }
+            }
+        }
     }
 
     public void movePiece() {
@@ -318,33 +369,6 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    public void moveScan() {
-        for (ImageButton[] boardTile : boardTiles) {
-            for (ImageButton imageButton : boardTile) {
-                if (imageButton != boardTiles[tileSelectedXOld][tileSelectedYOld]) {
-                    imageButton.setBackgroundResource(R.color.tile_color);
-                }
-            }
-        }
-
-        int[] xMoves = cardSelected.getXMoves();
-        int[] yMoves = cardSelected.getYMoves();
-
-        for (int x = 0; x < cardSelected.getXMoves().length; x++) {
-            if (turn) {
-                if (tileSelectedXOld + (xMoves[x] * -1) < 5 && tileSelectedYOld + (yMoves[x] * -1) < 5 && tileSelectedXOld + (xMoves[x] * -1) >= 0 && tileSelectedYOld + (yMoves[x] * -1) >= 0 && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redstudent" && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redmaster") {
-                    boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].setBackgroundResource(R.color.highlight);
-                    isTileSelected = true;
-                }
-            } else {
-                if (tileSelectedXOld + xMoves[x] < 5 && tileSelectedYOld + yMoves[x] < 5 && tileSelectedXOld + xMoves[x] >= 0 && tileSelectedYOld + yMoves[x] >= 0 && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluestudent" && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluemaster") {
-                    boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].setBackgroundResource(R.color.highlight);
-                    isTileSelected = true;
-                }
-            }
-        }
-    }
-
     // After a move is made, sweep through the array of gameboard tiles and reset them back to the original board colour
     public void resetBoard() {
         for (ImageButton[] boardTile : boardTiles) {
@@ -368,31 +392,6 @@ public class GameboardActivity extends AppCompatActivity {
         gameCardPictures[4].setImageResource(gameCardIDs[4]);
 
         checkForWin();
-    }
-
-    // Once a card has been selected, the board is scanned for all of a player's pieces which can be moved and highlights them
-    public void tileScan() {
-        if (turn) {
-            for (ImageButton[] boardTile : boardTiles) {
-                for (ImageButton imageButton : boardTile) {
-                    if (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster") {
-                        imageButton.setBackgroundResource(R.color.highlight);
-                    } else {
-                        imageButton.setBackgroundResource(R.color.tile_color);
-                    }
-                }
-            }
-        } else {
-            for (ImageButton[] boardTile : boardTiles) {
-                for (ImageButton imageButton : boardTile) {
-                    if (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster") {
-                        imageButton.setBackgroundResource(R.color.highlight);
-                    } else {
-                        imageButton.setBackgroundResource(R.color.tile_color);
-                    }
-                }
-            }
-        }
     }
 
     // Checking to see if the game has a victor
