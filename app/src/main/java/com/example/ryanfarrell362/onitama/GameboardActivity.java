@@ -66,11 +66,14 @@ public class GameboardActivity extends AppCompatActivity {
         assignTurn();
     }
 
+    // Creates the card objects then shuffles them into the deck
     public static void cardInitialization(ArrayList<Card> cards) {
+        // Empty the array if a previous game has been played in the same session
         if (cards.size() > 0) {
             cards.subList(0, cards.size()).clear();
         }
 
+        // Creating the card object for all 16 cards
         int[] tempArray1X = {0, -1, 1};
         int[] tempArray1Y = {-2, -1, 1};
         Card frog = new Card("Frog", tempArray1X, tempArray1Y, 'r');
@@ -135,6 +138,7 @@ public class GameboardActivity extends AppCompatActivity {
         int[] tempArray16Y = {-1, 0, 0};
         Card horse = new Card("Horse", tempArray16X, tempArray16Y, 'r');
 
+        // Adding the cards to the deck
         cards.add(frog);
         cards.add(goose);
         cards.add(rabbit);
@@ -153,10 +157,11 @@ public class GameboardActivity extends AppCompatActivity {
         cards.add(horse);
     }
 
+    // Generates the 5 cards which will be used for a match
     public void cardDealer(ArrayList<Card> cards, Card[] gameCards, int[] gameCardIDs) {
         int arrayValue = 0;
 
-        // Need an array of image buttons
+        // Generates each card by calling a function to get a card then assigns the card to each slot
         ImageButton player1Card1 = (ImageButton) findViewById(R.id.player1Card1);
         gameCardPictures[0] = player1Card1;
         cardAssigner(cards, player1Card1, gameCards, gameCardIDs, arrayValue);
@@ -182,7 +187,22 @@ public class GameboardActivity extends AppCompatActivity {
         cardAssigner(cards, middleCard, gameCards, gameCardIDs, arrayValue);
     }
 
+    public void cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
+        Random numGen = new Random(); // Initializes the random number generator
+
+        int randNum = numGen.nextInt(cards.size()); // Creates a random number between 0 and the number of cards remaining in the deck
+        Card chosenCard = cards.get(randNum); // Assigning the random number to a card in the array of card
+        gameCards[arrayValue] = chosenCard; // Then adding that card to the array of chosen cards for the game
+        String name = chosenCard.getName(); // Getting the name of the chosen card
+        int resID = getResources().getIdentifier(name.toLowerCase(), "mipmap", getPackageName()); // So that the id of the card can be obtained
+        gameCardIDs[arrayValue] = resID; // Then added to a similar array of chosen cards
+
+        card.setImageResource(resID);
+        cards.remove(randNum); // Finally after the data is obtained, the card is removed from the deck
+    }
+
     public void tileAssigner(ImageButton[][] boardTiles) {
+        // Creating a 2d array for the game board with their associated onclick listeners
         boardTiles[0][0] = (ImageButton) findViewById(R.id.btn1);
         boardTiles[0][1] = (ImageButton) findViewById(R.id.btn2);
         boardTiles[0][2] = (ImageButton) findViewById(R.id.btn3);
@@ -213,6 +233,7 @@ public class GameboardActivity extends AppCompatActivity {
         boardTiles[4][3] = (ImageButton) findViewById(R.id.btn24);
         boardTiles[4][4] = (ImageButton) findViewById(R.id.btn25);
 
+        // Adding the game pieces to the appropriate tiles
         boardTiles[0][0].setTag("redstudent");
         boardTiles[0][1].setTag("redstudent");
         boardTiles[0][2].setTag("redmaster");
@@ -232,6 +253,7 @@ public class GameboardActivity extends AppCompatActivity {
         return gameCards[4].getColour() == 'r';
     }
 
+    // Indicate who's turn it is by giving the player's profile picture a yellow background
     public void assignTurn() {
         ImageView profilePicture1 = (ImageView) findViewById(R.id.profilePicture1);
         ImageView profilePicture2 = (ImageView) findViewById(R.id.profilePicture2);
@@ -245,46 +267,20 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    public void cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
-        Random numGen = new Random();
-
-        int randNum = numGen.nextInt(cards.size());
-        Card chosenCard = cards.get(randNum);
-        gameCards[arrayValue] = chosenCard;
-        String name = chosenCard.getName();
-        int resID = getResources().getIdentifier(name.toLowerCase(), "mipmap", getPackageName());
-        gameCardIDs[arrayValue] = resID;
-
-        card.setImageResource(resID);
-        cards.remove(randNum);
-    }
-
     // Once a card has been selected, the board is scanned for all of a player's pieces which can be moved and highlights them
     public void tileScan() {
-        if (turn) {
-            for (ImageButton[] boardTile : boardTiles) {
-                for (ImageButton imageButton : boardTile) {
-                    if (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster") {
-                        imageButton.setBackgroundResource(R.color.highlight);
-                    } else {
-                        imageButton.setBackgroundResource(R.color.tile_color);
-                    }
-                }
-            }
-        } else {
-            for (ImageButton[] boardTile : boardTiles) {
-                for (ImageButton imageButton : boardTile) {
-                    if (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster") {
-                        imageButton.setBackgroundResource(R.color.highlight);
-                    } else {
-                        imageButton.setBackgroundResource(R.color.tile_color);
-                    }
+        for (ImageButton[] boardTile : boardTiles) {
+            for (ImageButton imageButton : boardTile) {
+                if ((turn && (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster")) || (!turn && (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster"))) {
+                    imageButton.setBackgroundResource(R.color.highlight);
                 }
             }
         }
     }
 
+
     public void moveScan() {
+        // After selecting a piece to move, any piece that was previously highlighted is returned to the original state if it was not the piece selected
         for (ImageButton[] boardTile : boardTiles) {
             for (ImageButton imageButton : boardTile) {
                 if (imageButton != boardTiles[tileSelectedXOld][tileSelectedYOld]) {
@@ -378,7 +374,7 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    // Need to fix this
+    // Swaps the card that was used to move a piece with the middle card as per the game rules
     public void cardSwap() {
         Card temp = gameCards[cardSelectedInt];
         gameCards[cardSelectedInt] = gameCards[4];
@@ -391,6 +387,7 @@ public class GameboardActivity extends AppCompatActivity {
         gameCardPictures[cardSelectedInt].setImageResource(gameCardIDs[cardSelectedInt]);
         gameCardPictures[4].setImageResource(gameCardIDs[4]);
 
+        // As this signals that a turn is over, a check to see if a winner has been determined is performed
         checkForWin();
     }
 
@@ -425,6 +422,7 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
+    // If a winner has been determined, this method is ran
     public void victoryScreen() {
         String winner = "";
 
@@ -434,6 +432,7 @@ public class GameboardActivity extends AppCompatActivity {
             winner = "Blue";
         }
 
+        // This dialog box prints out a message declaring the winner
         AlertDialog playerWin = new AlertDialog.Builder(GameboardActivity.this).create();
         playerWin.setTitle("Game Over");
         playerWin.setMessage(winner + " wins!");
@@ -444,8 +443,9 @@ public class GameboardActivity extends AppCompatActivity {
                     }
                 });
 
-        playerWin.show();
+        playerWin.show(); // The message is then shown
 
+        // Finally the listeners on the player's cards are disabled so that no further moves can be made
         gameCardPictures[0].setOnClickListener(null);
         gameCardPictures[1].setOnClickListener(null);
         gameCardPictures[2].setOnClickListener(null);
