@@ -9,130 +9,62 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameboardActivity extends AppCompatActivity {
 
-    static Card cardSelected;
-    static int cardSelectedInt;
-
-    static int tileSelectedXOld;
-    static int tileSelectedYOld;
-
-    static int tileSelectedXNew;
-    static int tileSelectedYNew;
-
-    static boolean isCardSelected = false;
-    static boolean isTileSelected = false;
-
     // Cards
-    public static ArrayList<Card> cards = new ArrayList<> (); // For choosing the cards to be in the game
-    public static Card [] gameCards = new Card [5]; // For storing the information of those cards
-    public static int [] gameCardIDs = new int [5]; // For storing the images of those cards
-    public static ImageButton [] gameCardPictures = new ImageButton [5];
-    public static ImageButton [][] boardTiles = new ImageButton [5][5]; // Stores tile information
+    public static ArrayList<Card> cards = new ArrayList<>(); // For choosing the cards to be in the game
+    public static Card[] gameCards = new Card[5]; // For storing the information of those cards
+    public static int[] gameCardIDs = new int[5]; // For storing the images of those cards
+    public static ImageButton[] gameCardPictures = new ImageButton[5];
+    public static ImageButton[][] boardTiles = new ImageButton[5][5]; // Stores tile information
 
     // Game Pieces
     public static int blueStudentID;
     public static int blueMasterID;
-
     public static int redStudentID;
     public static int redMasterID;
 
     // Game Board
     public static boolean turn = false;
     public static int gameOver = 0;
+    static Card cardSelected;
+    static int cardSelectedInt;
+    static int tileSelectedXOld;
+    static int tileSelectedYOld;
+    static int tileSelectedXNew;
+    static int tileSelectedYNew;
+    static boolean isCardSelected = false;
+    static boolean isTileSelected = false;
 
-    public static ArrayList<Card> cardInitialization(ArrayList<Card> cards) {
+    // Creates the card objects then shuffles them into the deck
+    public static void cardInitialization(ArrayList<Card> cards) {
+        // Empty the array if a previous game has been played in the same session
         if (cards.size() > 0) {
             cards.subList(0, cards.size()).clear();
         }
 
-        int[] tempArray1X = {0, -1, 1};
-        int[] tempArray1Y = {-2, -1, 1};
-        Card frog = new Card("Frog", tempArray1X, tempArray1Y, 'r');
-
-        int[] tempArray2X = {-1, 0, 0, 1};
-        int[] tempArray2Y = {-1, -1, 1, 1};
-        Card goose = new Card("Goose", tempArray2X, tempArray2Y, 'b');
-
-        int[] tempArray3X = {1, -1, 0};
-        int[] tempArray3Y = {-1, 1, 2};
-        Card rabbit = new Card("Rabbit", tempArray3X, tempArray3Y, 'b');
-
-        int[] tempArray4X = {-1, 1, -1};
-        int[] tempArray4Y = {-1, 0, 1};
-        Card mantis = new Card("Mantis", tempArray4X, tempArray4Y, 'r');
-
-        int[] tempArray5X = {0, -1, 1};
-        int[] tempArray5Y = {-1, 1, 1};
-        Card cobra = new Card("Cobra", tempArray5X, tempArray5Y, 'r');
-
-        int[] tempArray6X = {-1, 0, -1, 0};
-        int[] tempArray6Y = {-1, -1, 1, 1};
-        Card elephant = new Card("Elephant", tempArray6X, tempArray6Y, 'r');
-
-        int[] tempArray7X = {1, -1, 1};
-        int[] tempArray7Y = {-1, 0, 1};
-        Card crane = new Card("Crane", tempArray7X, tempArray7Y, 'b');
-
-        int[] tempArray8X = {-1, 1, -1, 1};
-        int[] tempArray8Y = {-1, -1, 1, 1};
-        Card monkey = new Card("Monkey", tempArray8X, tempArray8Y, 'b');
-
-        int[] tempArray9X = {0, -1, 0};
-        int[] tempArray9Y = {-2, 0, 2};
-        Card crab = new Card("Crab", tempArray9X, tempArray9Y, 'b');
-
-        int[] tempArray10X = {0, 1, -1, 0};
-        int[] tempArray10Y = {-1, -1, 1, 1};
-        Card rooster = new Card("Rooster", tempArray10X, tempArray10Y, 'r');
-
-        int[] tempArray11X = {-2, 1};
-        int[] tempArray11Y = {0, 0};
-        Card tiger = new Card("Tiger", tempArray11X, tempArray11Y, 'b');
-
-        int[] tempArray12X = {-1, 1, 0};
-        int[] tempArray12Y = {0, 0, 1};
-        Card ox = new Card("Ox", tempArray12X, tempArray12Y, 'b');
-
-        int[] tempArray13X = {-1, 1, 1, -1};
-        int[] tempArray13Y = {-2, -1, 1, 2};
-        Card dragon = new Card("Dragon", tempArray13X, tempArray13Y, 'r');
-
-        int[] tempArray14X = {-1, 1, 0};
-        int[] tempArray14Y = {-1, -1, 1};
-        Card eel = new Card("Eel", tempArray14X, tempArray14Y, 'b');
-
-        int[] tempArray15X = {0, -1, 0};
-        int[] tempArray15Y = {-1, 0, 1};
-        Card boar = new Card("Boar", tempArray15X, tempArray15Y, 'r');
-
-        int[] tempArray16X = {0, -1, 1};
-        int[] tempArray16Y = {-1, 0, 0};
-        Card horse = new Card("Horse", tempArray16X, tempArray16Y, 'r');
-
-        cards.add(frog);
-        cards.add(goose);
-        cards.add(rabbit);
-        cards.add(mantis);
-        cards.add(cobra);
-        cards.add(elephant);
-        cards.add(crane);
-        cards.add(monkey);
-        cards.add(crab);
-        cards.add(rooster);
-        cards.add(tiger);
-        cards.add(ox);
-        cards.add(dragon);
-        cards.add(eel);
-        cards.add(boar);
-        cards.add(horse);
-
-        return cards;
+        // Creates each card using the Card class then adds it to the deck
+        // X and Y movements are hardcoded in order below
+        cards.add(new Card("Frog", new int[]{0, -1, 1}, new int[]{-2, -1, 1}, 'r'));
+        cards.add(new Card("Goose", new int[]{-1, 0, 0, 1}, new int[]{-1, -1, 1, 1}, 'b'));
+        cards.add(new Card("Rabbit", new int[]{1, -1, 0}, new int[]{-1, 1, 2}, 'b'));
+        cards.add(new Card("Mantis", new int[]{-1, 1, -1}, new int[]{-1, 0, 1}, 'r'));
+        cards.add(new Card("Cobra", new int[]{0, -1, 1}, new int[]{-1, 1, 1}, 'r'));
+        cards.add(new Card("Elephant", new int[]{-1, 0, -1, 0}, new int[]{-1, -1, 1, 1}, 'r'));
+        cards.add(new Card("Crane", new int[]{1, -1, 1}, new int[]{-1, 0, 1}, 'b'));
+        cards.add(new Card("Monkey", new int[]{-1, 1, -1, 1}, new int[]{-1, -1, 1, 1}, 'b'));
+        cards.add(new Card("Crab", new int[]{0, -1, 0}, new int[]{-2, 0, 2}, 'b'));
+        cards.add(new Card("Rooster", new int[]{0, 1, -1, 0}, new int[]{-1, -1, 1, 1}, 'r'));
+        cards.add(new Card("Tiger", new int[]{-2, 1}, new int[]{0, 0}, 'b'));
+        cards.add(new Card("Ox", new int[]{-1, 1, 0}, new int[]{0, 0, 1}, 'b'));
+        cards.add(new Card("Dragon", new int[]{-1, 1, 1, -1}, new int[]{-2, -1, 1, 2}, 'r'));
+        cards.add(new Card("Eel", new int[]{-1, 1, 0}, new int[]{-1, -1, 1}, 'b'));
+        cards.add(new Card("Boar", new int[]{0, -1, 0}, new int[]{-1, 0, 1}, 'r'));
+        cards.add(new Card("Horse", new int[]{0, -1, 1}, new int[]{-1, 0, 0}, 'r'));
     }
-
-    //Card Listeners
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,420 +75,120 @@ public class GameboardActivity extends AppCompatActivity {
         blueStudentID = getResources().getIdentifier("bluestudent", "mipmap", getPackageName());
         blueMasterID = getResources().getIdentifier("bluemaster", "mipmap", getPackageName());
 
-        redStudentID = getResources ().getIdentifier ("redstudent", "mipmap", getPackageName());
-        redMasterID = getResources ().getIdentifier ("redmaster", "mipmap", getPackageName());
+        redStudentID = getResources().getIdentifier("redstudent", "mipmap", getPackageName());
+        redMasterID = getResources().getIdentifier("redmaster", "mipmap", getPackageName());
 
         // Game Initialization
-        cardInitialization (cards); // Setup cards
-        cardDealer (cards, gameCards, gameCardIDs); // Deal out cards
-        tileAssigner (boardTiles); // Fills 2D array of board tiles
-        turn = firstTurn (gameCards, turn); // Determine who goes first
+        cardInitialization(cards); // Setup cards
+        cardDealer(cards, gameCards, gameCardIDs); // Deal out cards
+        tileAssigner(boardTiles); // Fills 2D array of board tiles
+        turn = firstTurn(gameCards); // Determine who goes first
 
-        gameOver = 0;
+        gameOver = 0; // Set variable to default state as the game has just started
 
         assignTurn();
     }
 
-    public void player1Card1 (View view)
-    {
-        if (turn) {
-            cardSelected = gameCards[0];
-            cardSelectedInt = 0;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
-        }
+    // Generates the 5 cards which will be used for a match
+    public void cardDealer(ArrayList<Card> cards, Card[] gameCards, int[] gameCardIDs) {
+        int arrayValue = 0;
+
+        // Generates each card by calling a function to get a card then assigns the card to each slot
+        ImageButton player1Card1 = (ImageButton) findViewById(R.id.player1Card1);
+        gameCardPictures[0] = player1Card1;
+        cardAssigner(cards, player1Card1, gameCards, gameCardIDs, arrayValue);
+        arrayValue++;
+
+        ImageButton player1Card2 = (ImageButton) findViewById(R.id.player1Card2);
+        gameCardPictures[1] = player1Card2;
+        cardAssigner(cards, player1Card2, gameCards, gameCardIDs, arrayValue);
+        arrayValue++;
+
+        ImageButton player2Card1 = (ImageButton) findViewById(R.id.player2Card1);
+        gameCardPictures[2] = player2Card1;
+        cardAssigner(cards, player2Card1, gameCards, gameCardIDs, arrayValue);
+        arrayValue++;
+
+        ImageButton player2Card2 = (ImageButton) findViewById(R.id.player2Card2);
+        gameCardPictures[3] = player2Card2;
+        cardAssigner(cards, player2Card2, gameCards, gameCardIDs, arrayValue);
+        arrayValue++;
+
+        ImageButton middleCard = (ImageButton) findViewById(R.id.middleCard);
+        gameCardPictures[4] = middleCard;
+        cardAssigner(cards, middleCard, gameCards, gameCardIDs, arrayValue);
     }
 
-    public void player1Card2 (View view)
-    {
-        if (turn) {
-            cardSelected = gameCards[1];
-            cardSelectedInt = 1;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
-        }
+    public void cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
+        Random numGen = new Random(); // Initializes the random number generator
+
+        int randNum = numGen.nextInt(cards.size()); // Creates a random number between 0 and the number of cards remaining in the deck
+        Card chosenCard = cards.get(randNum); // Assigning the random number to a card in the array of card
+        gameCards[arrayValue] = chosenCard; // Then adding that card to the array of chosen cards for the game
+        String name = chosenCard.getName(); // Getting the name of the chosen card
+        int resID = getResources().getIdentifier(name.toLowerCase(), "mipmap", getPackageName()); // So that the id of the card can be obtained
+        gameCardIDs[arrayValue] = resID; // Then added to a similar array of chosen cards
+
+        card.setImageResource(resID);
+        cards.remove(randNum); // Finally after the data is obtained, the card is removed from the deck
     }
 
-    public void player2Card1 (View view) {
-        if (!turn) {
-            cardSelected = gameCards[2];
-            cardSelectedInt = 2;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
-        }
+    public void tileAssigner(ImageButton[][] boardTiles) {
+        // Creating a 2d array for the game board with their associated onclick listeners
+        boardTiles[0][0] = (ImageButton) findViewById(R.id.btn1);
+        boardTiles[0][1] = (ImageButton) findViewById(R.id.btn2);
+        boardTiles[0][2] = (ImageButton) findViewById(R.id.btn3);
+        boardTiles[0][3] = (ImageButton) findViewById(R.id.btn4);
+        boardTiles[0][4] = (ImageButton) findViewById(R.id.btn5);
+
+        boardTiles[1][0] = (ImageButton) findViewById(R.id.btn6);
+        boardTiles[1][1] = (ImageButton) findViewById(R.id.btn7);
+        boardTiles[1][2] = (ImageButton) findViewById(R.id.btn8);
+        boardTiles[1][3] = (ImageButton) findViewById(R.id.btn9);
+        boardTiles[1][4] = (ImageButton) findViewById(R.id.btn10);
+
+        boardTiles[2][0] = (ImageButton) findViewById(R.id.btn11);
+        boardTiles[2][1] = (ImageButton) findViewById(R.id.btn12);
+        boardTiles[2][2] = (ImageButton) findViewById(R.id.btn13);
+        boardTiles[2][3] = (ImageButton) findViewById(R.id.btn14);
+        boardTiles[2][4] = (ImageButton) findViewById(R.id.btn15);
+
+        boardTiles[3][0] = (ImageButton) findViewById(R.id.btn16);
+        boardTiles[3][1] = (ImageButton) findViewById(R.id.btn17);
+        boardTiles[3][2] = (ImageButton) findViewById(R.id.btn18);
+        boardTiles[3][3] = (ImageButton) findViewById(R.id.btn19);
+        boardTiles[3][4] = (ImageButton) findViewById(R.id.btn20);
+
+        boardTiles[4][0] = (ImageButton) findViewById(R.id.btn21);
+        boardTiles[4][1] = (ImageButton) findViewById(R.id.btn22);
+        boardTiles[4][2] = (ImageButton) findViewById(R.id.btn23);
+        boardTiles[4][3] = (ImageButton) findViewById(R.id.btn24);
+        boardTiles[4][4] = (ImageButton) findViewById(R.id.btn25);
+
+        // Adding the game pieces to the appropriate tiles
+        boardTiles[0][0].setTag("redstudent");
+        boardTiles[0][1].setTag("redstudent");
+        boardTiles[0][2].setTag("redmaster");
+        boardTiles[0][3].setTag("redstudent");
+        boardTiles[0][4].setTag("redstudent");
+
+        boardTiles[4][0].setTag("bluestudent");
+        boardTiles[4][1].setTag("bluestudent");
+        boardTiles[4][2].setTag("bluemaster");
+        boardTiles[4][3].setTag("bluestudent");
+        boardTiles[4][4].setTag("bluestudent");
     }
 
-    // Tile Listeners
-
-    public void player2Card2(View view) {
-        if (!turn) {
-            cardSelected = gameCards[3];
-            cardSelectedInt = 3;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
-        }
+    // Sets the first turn based on the colour of the middle card
+    public boolean firstTurn(Card[] gameCards) {
+        // Returns false for blue, and true for red
+        return gameCards[4].getColour() == 'r';
     }
 
-    public void btn1 (View view) {
-        if (boardTiles[0][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn2 (View view) {
-        if (boardTiles[0][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn3 (View view) {
-        if (boardTiles[0][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn4 (View view) {
-        if (boardTiles[0][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn5 (View view) {
-        if (boardTiles[0][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 0;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 0;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn6 (View view) {
-        if (boardTiles[1][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn7 (View view) {
-        if (boardTiles[1][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn8 (View view) {
-        if (boardTiles[1][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn9 (View view) {
-        if (boardTiles[1][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn10 (View view) {
-        if (boardTiles[1][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 1;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 1;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn11 (View view) {
-        if (boardTiles[2][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn12 (View view) {
-        if (boardTiles[2][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn13 (View view) {
-        if (boardTiles[2][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn14 (View view) {
-        if (boardTiles[2][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn15 (View view) {
-        if (boardTiles[2][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 2;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 2;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn16 (View view) {
-        if (boardTiles[3][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn17 (View view) {
-        if (boardTiles[3][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn18 (View view) {
-        if (boardTiles[3][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn19 (View view) {
-        if (boardTiles[3][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn20 (View view) {
-        if (boardTiles[3][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 3;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 3;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn21 (View view) {
-        if (boardTiles[4][0].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 0;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 0;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn22 (View view) {
-        if (boardTiles[4][1].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 1;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 1;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn23 (View view) {
-        if (boardTiles[4][2].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 2;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 2;
-                movePiece();
-            }
-        }
-    }
-
-    public void btn24 (View view) {
-        if (boardTiles[4][3].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 3;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 3;
-                movePiece();
-            }
-        }
-    }
-
-    // Other Methods
-
-    public void btn25(View view) {
-        if (boardTiles[4][4].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
-            if (!isTileSelected) {
-                tileSelectedXOld = 4;
-                tileSelectedYOld = 4;
-                moveScan();
-            } else {
-                tileSelectedXNew = 4;
-                tileSelectedYNew = 4;
-                movePiece();
-            }
-        }
-    }
-
-    public void assignTurn ()
-    {
-        ImageView profilePicture1 = (ImageView) findViewById (R.id.profilePicture1);
-        ImageView profilePicture2 = (ImageView) findViewById (R.id.profilePicture2);
+    // Indicate who's turn it is by giving the player's profile picture a yellow background
+    public void assignTurn() {
+        ImageView profilePicture1 = (ImageView) findViewById(R.id.profilePicture1);
+        ImageView profilePicture2 = (ImageView) findViewById(R.id.profilePicture2);
 
         if (!turn) {
             profilePicture2.setBackgroundResource(R.color.highlight);
@@ -567,194 +199,99 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    public void cardDealer(ArrayList<Card> cards, Card[] gameCards, int[] gameCardIDs) {
-        int arrayValue = 0;
-
-        // Need an array of image buttons
-
-        ImageButton player1Card1 = (ImageButton) findViewById(R.id.player1Card1);
-        gameCardPictures[0] = player1Card1;
-        cardAssigner(cards, player1Card1, gameCards, gameCardIDs, arrayValue);
-        arrayValue++;
-
-        ImageButton player1Card2 = (ImageButton) findViewById (R.id.player1Card2);
-        gameCardPictures [1] = player1Card2;
-        cardAssigner (cards, player1Card2, gameCards, gameCardIDs, arrayValue);
-        arrayValue ++;
-
-        ImageButton player2Card1 = (ImageButton) findViewById (R.id.player2Card1);
-        gameCardPictures [2] = player2Card1;
-        cardAssigner (cards, player2Card1, gameCards, gameCardIDs, arrayValue);
-        arrayValue ++;
-
-        ImageButton player2Card2 = (ImageButton) findViewById (R.id.player2Card2);
-        gameCardPictures [3] = player2Card2;
-        cardAssigner (cards, player2Card2, gameCards, gameCardIDs, arrayValue);
-        arrayValue ++;
-
-        ImageButton middleCard = (ImageButton) findViewById (R.id.middleCard);
-        gameCardPictures [4] = middleCard;
-        cardAssigner (cards, middleCard, gameCards, gameCardIDs, arrayValue);
-    }
-
-    public ArrayList<Card> cardAssigner(ArrayList<Card> cards, ImageButton card, Card[] gameCards, int[] gameCardIDs, int arrayValue) {
-        Random numGen = new Random();
-
-        int randNum = numGen.nextInt(cards.size());
-        Card chosenCard = cards.get(randNum);
-        gameCards[arrayValue] = chosenCard;
-        String name = chosenCard.getName();
-        int resID = getResources().getIdentifier(name.toLowerCase(), "mipmap", getPackageName());
-        gameCardIDs[arrayValue] = resID;
-
-        card.setImageResource(resID);
-        cards.remove (randNum);
-
-        return cards;
-    }
-
-    public boolean firstTurn (Card [] gameCards, boolean turn)
-    {
-        if (gameCards[4].getColour() == 'b') {
-            turn = false; // Blue
-        } else if (gameCards[4].getColour() == 'r') {
-            turn = true; // Red
-        }
-
-        return turn;
-    }
-
-    public void tileAssigner (ImageButton [][] boardTiles)
-    {
-        boardTiles [0][0] = (ImageButton) findViewById (R.id.btn1);
-        boardTiles [0][1] = (ImageButton) findViewById (R.id.btn2);
-        boardTiles [0][2] = (ImageButton) findViewById (R.id.btn3);
-        boardTiles [0][3] = (ImageButton) findViewById (R.id.btn4);
-        boardTiles [0][4] = (ImageButton) findViewById (R.id.btn5);
-
-        boardTiles [1][0] = (ImageButton) findViewById (R.id.btn6);
-        boardTiles [1][1] = (ImageButton) findViewById (R.id.btn7);
-        boardTiles [1][2] = (ImageButton) findViewById (R.id.btn8);
-        boardTiles [1][3] = (ImageButton) findViewById (R.id.btn9);
-        boardTiles [1][4] = (ImageButton) findViewById (R.id.btn10);
-
-        boardTiles [2][0] = (ImageButton) findViewById (R.id.btn11);
-        boardTiles [2][1] = (ImageButton) findViewById (R.id.btn12);
-        boardTiles [2][2] = (ImageButton) findViewById (R.id.btn13);
-        boardTiles [2][3] = (ImageButton) findViewById (R.id.btn14);
-        boardTiles [2][4] = (ImageButton) findViewById (R.id.btn15);
-
-        boardTiles [3][0] = (ImageButton) findViewById (R.id.btn16);
-        boardTiles [3][1] = (ImageButton) findViewById (R.id.btn17);
-        boardTiles [3][2] = (ImageButton) findViewById (R.id.btn18);
-        boardTiles [3][3] = (ImageButton) findViewById (R.id.btn19);
-        boardTiles [3][4] = (ImageButton) findViewById (R.id.btn20);
-
-        boardTiles [4][0] = (ImageButton) findViewById (R.id.btn21);
-        boardTiles [4][1] = (ImageButton) findViewById (R.id.btn22);
-        boardTiles [4][2] = (ImageButton) findViewById (R.id.btn23);
-        boardTiles [4][3] = (ImageButton) findViewById (R.id.btn24);
-        boardTiles [4][4] = (ImageButton) findViewById (R.id.btn25);
-
-        boardTiles [0][0].setTag ("redstudent");
-        boardTiles [0][1].setTag ("redstudent");
-        boardTiles [0][2].setTag ("redmaster");
-        boardTiles [0][3].setTag ("redstudent");
-        boardTiles [0][4].setTag ("redstudent");
-
-        boardTiles [4][0].setTag ("bluestudent");
-        boardTiles [4][1].setTag ("bluestudent");
-        boardTiles [4][2].setTag ("bluemaster");
-        boardTiles [4][3].setTag ("bluestudent");
-        boardTiles [4][4].setTag ("bluestudent");
-    }
-
-    public void movePiece () {
-        if (turn) {
-            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
-                if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redstudent") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redstudent);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redstudent");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                } else if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redmaster") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redmaster);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redmaster");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                }
-
-                turn = false;
-            } else {
-                isTileSelected = false;
-                resetBoard();
-            }
-        } else {
-            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
-                if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluestudent") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluestudent);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluestudent");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                } else if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluemaster") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluemaster);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluemaster");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                }
-
-                turn = true;
-            } else {
-                isTileSelected = false;
-                resetBoard();
-            }
-        }
+    // Once a card has been selected, the board is scanned for all of a player's pieces which can be moved and highlights them
+    public void tileScan() {
+        resetBoard();
 
         for (ImageButton[] boardTile : boardTiles) {
             for (ImageButton imageButton : boardTile) {
-                imageButton.setBackgroundResource(R.color.tile_color);
+                if ((turn && (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster")) || (!turn && (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster"))) {
+                    imageButton.setBackgroundResource(R.color.highlight);
+                }
             }
         }
+    }
 
+
+    public void moveScan() {
+        // After selecting a piece to move, the board is reset to its original colour and only the selected piece is highlighted
+        resetBoard();
+        boardTiles[tileSelectedXOld][tileSelectedYOld].setBackgroundResource(R.color.highlight);
+
+        // Retrieve the moves from the card selected and put them into separate x and y axis arrays
+        int[] xMoves = cardSelected.getXMoves();
+        int[] yMoves = cardSelected.getYMoves();
+
+        int newX;
+        int newY;
+
+        // Then all valid moves are determined and highlighted
+        for (int x = 0; x < cardSelected.getXMoves().length; x++) {
+            // Multiply by -1 to flip if it's red's turn
+            if (turn) {
+                // Determine the x and y coordinate of the move beforehand to de-clutter the if statement
+                newX = tileSelectedXOld + xMoves[x] * -1;
+                newY = tileSelectedYOld + yMoves[x] * -1;
+            } else {
+                newX = tileSelectedXOld + xMoves[x];
+                newY = tileSelectedYOld + yMoves[x];
+            }
+
+            // Finally check which squares are valid to move to and highlight them
+            if (turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "redstudent" && boardTiles[newX][newY].getTag() != "redmaster")) {
+                boardTiles[newX][newY].setBackgroundResource(R.color.highlight);
+                isTileSelected = true;
+            } else if (!turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "bluestudent" && boardTiles[newX][newY].getTag() != "bluemaster")) {
+                boardTiles[newX][newY].setBackgroundResource(R.color.highlight);
+                isTileSelected = true;
+            }
+        }
+    }
+
+    // After a move has been selected, check the validity of it then perform the move
+    public void movePiece() {
+        // Check if the selected tile is highlighted
+        if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
+            // Then check which piece is being moved and perform the move
+            if (turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redstudent")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redstudent);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redstudent");
+            } else if (turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redmaster")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redmaster);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redmaster");
+            } else if (!turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluestudent")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluestudent);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluestudent");
+            } else if (!turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluemaster")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluemaster);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluemaster");
+            }
+
+            // Then remove the moved piece form its old position
+            boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
+            boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
+
+            // Now it's the other player's turn
+            turn = !turn;
+        } else {
+            // If not a valid move, redo and let the player select a different move
+            isTileSelected = false;
+        }
+
+        // Finally get rid of all the highlighted tiles
+        resetBoard();
+
+        // And reset the turn for the next player
         if (isTileSelected && isCardSelected) {
             isCardSelected = false;
             isTileSelected = false;
+            // Then swap the card used to make the move with the middle card
             cardSwap();
         }
     }
 
-    public void moveScan () {
-        for (ImageButton[] boardTile : boardTiles) {
-            for (ImageButton imageButton : boardTile) {
-                if (imageButton != boardTiles[tileSelectedXOld][tileSelectedYOld]) {
-                    imageButton.setBackgroundResource(R.color.tile_color);
-                }
-            }
-        }
-
-        int[] xMoves = cardSelected.getXMoves();
-        int[] yMoves = cardSelected.getYMoves();
-
-        for (int x = 0; x < cardSelected.getXMoves().length; x++) {
-            if (turn) {
-                if (tileSelectedXOld + (xMoves[x] * -1) < 5 && tileSelectedYOld + (yMoves[x] * -1) < 5 && tileSelectedXOld + (xMoves[x] * -1) >= 0 && tileSelectedYOld + (yMoves[x] * -1) >= 0 && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redstudent" && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redmaster") {
-                    boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].setBackgroundResource(R.color.highlight);
-                    isTileSelected = true;
-                }
-            } else {
-                if (tileSelectedXOld + xMoves[x] < 5 && tileSelectedYOld + yMoves[x] < 5 && tileSelectedXOld + xMoves[x] >= 0 && tileSelectedYOld + yMoves[x] >= 0 && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluestudent" && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluemaster") {
-                    boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].setBackgroundResource(R.color.highlight);
-                    isTileSelected = true;
-                }
-            }
-        }
-    }
-
-    public void resetBoard () {
+    // After a move is made, sweep through the array of gameboard tiles and reset them back to the original board colour
+    public void resetBoard() {
         for (ImageButton[] boardTile : boardTiles) {
             for (ImageButton imageButton : boardTile) {
                 imageButton.setBackgroundResource(R.color.tile_color);
@@ -762,57 +299,34 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
-    // Need to fix this
-    public void cardSwap ()
-    {
-        Card temp = gameCards [cardSelectedInt];
-        gameCards [cardSelectedInt] = gameCards [4];
-        gameCards [4] = temp;
+    // Swaps the card that was used to move a piece with the middle card as per the game rules
+    public void cardSwap() {
+        Card temp = gameCards[cardSelectedInt];
+        gameCards[cardSelectedInt] = gameCards[4];
+        gameCards[4] = temp;
 
-        int tempInt = gameCardIDs [cardSelectedInt];
-        gameCardIDs [cardSelectedInt] = gameCardIDs [4];
-        gameCardIDs [4] = tempInt;
+        int tempInt = gameCardIDs[cardSelectedInt];
+        gameCardIDs[cardSelectedInt] = gameCardIDs[4];
+        gameCardIDs[4] = tempInt;
 
-        gameCardPictures [cardSelectedInt].setImageResource(gameCardIDs [cardSelectedInt]);
-        gameCardPictures [4].setImageResource(gameCardIDs [4]);
+        gameCardPictures[cardSelectedInt].setImageResource(gameCardIDs[cardSelectedInt]);
+        gameCardPictures[4].setImageResource(gameCardIDs[4]);
 
-        checkForWin ();
+        // As this signals that a turn is over, a check to see if a winner has been determined is performed
+        checkForWin();
     }
 
-    public void tileScan ()
-    {
-        if (turn) {
-            for (ImageButton[] boardTile : boardTiles) {
-                for (ImageButton imageButton : boardTile) {
-
-                    if (imageButton.getTag() == "redstudent" || imageButton.getTag() == "redmaster") {
-                        imageButton.setBackgroundResource(R.color.highlight);
-                    } else {
-                        imageButton.setBackgroundResource(R.color.tile_color);
-                    }
-                }
-            }
-        } else {
-            for (ImageButton[] boardTile : boardTiles) {
-                for (ImageButton imageButton : boardTile) {
-                    if (imageButton.getTag() == "bluestudent" || imageButton.getTag() == "bluemaster") {
-                        imageButton.setBackgroundResource(R.color.highlight);
-                    } else {
-                        imageButton.setBackgroundResource(R.color.tile_color);
-                    }
-                }
-            }
-        }
-    }
-
-    public void checkForWin () {
+    // Checking to see if the game has a victor
+    public void checkForWin() {
+        // Initializing variables to store the status of the two masters
         boolean isRedMaster = false;
         boolean isBlueMaster = false;
 
+        // Checking the 2d board array for the masters
         for (ImageButton[] boardTile : boardTiles) {
             for (ImageButton imageButton : boardTile) {
                 if (imageButton.getTag() == "redmaster" && !isRedMaster) {
-                    isRedMaster = true;
+                    isRedMaster = true; // Setting variable to true if the master is found
                 }
 
                 if (imageButton.getTag() == "bluemaster" && !isBlueMaster) {
@@ -821,6 +335,7 @@ public class GameboardActivity extends AppCompatActivity {
             }
         }
 
+        // If a master is missing, or on the opposing master's starting square, the game is over
         if (!isBlueMaster || boardTiles[4][2].getTag() == "redmaster") {
             gameOver = 2;
             victoryScreen();
@@ -828,41 +343,117 @@ public class GameboardActivity extends AppCompatActivity {
             gameOver = 1;
             victoryScreen();
         } else {
-            assignTurn();
+            assignTurn(); // If no victor has been found, continue to the next turn
         }
     }
 
-    public void victoryScreen ()
-    {
+    // If a winner has been determined, this method is ran
+    public void victoryScreen() {
+        String winner = "";
+
         if (gameOver == 2) {
-            AlertDialog redWin = new AlertDialog.Builder(GameboardActivity.this).create();
-            redWin.setTitle("Game Over");
-            redWin.setMessage("Red wins!");
-            redWin.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-
-            redWin.show();
+            winner = "Red";
         } else if (gameOver == 1) {
-            AlertDialog blueWin = new AlertDialog.Builder(GameboardActivity.this).create();
-            blueWin.setTitle("Game Over");
-            blueWin.setMessage("Blue wins!");
-            blueWin.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-
-            blueWin.show();
+            winner = "Blue";
         }
 
-        gameCardPictures [0].setOnClickListener(null);
-        gameCardPictures [1].setOnClickListener(null);
-        gameCardPictures [2].setOnClickListener(null);
-        gameCardPictures [3].setOnClickListener(null);
+        // This dialog box prints out a message declaring the winner
+        AlertDialog playerWin = new AlertDialog.Builder(GameboardActivity.this).create();
+        playerWin.setTitle("Game Over");
+        playerWin.setMessage(winner + " wins!");
+        playerWin.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        playerWin.show(); // The message is then shown
+
+        // Finally the listeners on the player's cards are disabled so that no further moves can be made
+        gameCardPictures[0].setOnClickListener(null);
+        gameCardPictures[1].setOnClickListener(null);
+        gameCardPictures[2].setOnClickListener(null);
+        gameCardPictures[3].setOnClickListener(null);
+    }
+
+// Button Listeners
+
+    // Card Listeners
+
+    public void player1Card1(View view) {
+        if (turn) {
+            cardAction(0);
+        }
+    }
+
+    public void player1Card2(View view) {
+        if (turn) {
+            cardAction(1);
+        }
+    }
+
+    public void player2Card1(View view) {
+        if (!turn) {
+            cardAction(2);
+        }
+    }
+
+    public void player2Card2(View view) {
+        if (!turn) {
+            cardAction(3);
+        }
+    }
+
+    // Tile Listeners
+
+    public void btn1(View view) { buttonAction(0, 0); }
+    public void btn2(View view) { buttonAction(0, 1); }
+    public void btn3(View view) { buttonAction(0, 2); }
+    public void btn4(View view) { buttonAction(0, 3); }
+    public void btn5(View view) { buttonAction(0, 4); }
+    public void btn6(View view) { buttonAction(1, 0); }
+    public void btn7(View view) { buttonAction(1, 1); }
+    public void btn8(View view) { buttonAction(1, 2); }
+    public void btn9(View view) { buttonAction(1, 3); }
+    public void btn10(View view) { buttonAction(1, 4); }
+    public void btn11(View view) { buttonAction(2, 0); }
+    public void btn12(View view) { buttonAction(2, 1); }
+    public void btn13(View view) { buttonAction(2, 2); }
+    public void btn14(View view) { buttonAction(2, 3); }
+    public void btn15(View view) { buttonAction(2, 4); }
+    public void btn16(View view) { buttonAction(3, 0); }
+    public void btn17(View view) { buttonAction(3, 1); }
+    public void btn18(View view) { buttonAction(3, 2); }
+    public void btn19(View view) { buttonAction(3, 3); }
+    public void btn20(View view) { buttonAction(3, 4); }
+    public void btn21(View view) { buttonAction(4, 0); }
+    public void btn22(View view) { buttonAction(4, 1); }
+    public void btn23(View view) { buttonAction(4, 2); }
+    public void btn24(View view) { buttonAction(4, 3); }
+    public void btn25(View view) { buttonAction(4, 4); }
+
+    // Performed whenever a card is selected
+    public void cardAction(int x) {
+        cardSelected = gameCards[x];
+        cardSelectedInt = x;
+        isTileSelected = false;
+        isCardSelected = true;
+        tileScan();
+    }
+
+    // Performed whenever a button on the gameboard is pressed when valid
+    public void buttonAction(int x, int y) {
+        if (boardTiles[x][y].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState()) {
+            if (!isTileSelected) {
+                tileSelectedXOld = x;
+                tileSelectedYOld = y;
+                moveScan();
+            } else {
+                tileSelectedXNew = x;
+                tileSelectedYNew = y;
+                movePiece();
+            }
+        }
     }
 }

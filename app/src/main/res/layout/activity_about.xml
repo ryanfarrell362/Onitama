@@ -14,7 +14,7 @@
         android:id="@+id/settings_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about"
+        android:text="@string/about_internal"
         android:textSize="@dimen/title_textsize"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryLight"

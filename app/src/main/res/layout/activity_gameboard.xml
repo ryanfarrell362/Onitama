@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/top_padding">
 
     <LinearLayout
         android:id="@+id/player1Cards"
@@ -22,29 +22,29 @@
             android:rotation="180"
             android:background="@mipmap/cardtemplate"
             android:scaleType="fitXY"
-            android:onClick="player1Card1" />
+            android:onClick="player1Card1"
+            android:contentDescription="@string/desc" />
 
         <ImageButton
             android:id="@+id/player1Card2"
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
-            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginStart="@dimen/card_margin"
             android:rotation="180"
             android:background="@mipmap/cardtemplate"
             android:scaleType="fitXY"
-            android:onClick="player1Card2"/>
+            android:onClick="player1Card2"
+            android:contentDescription="@string/desc"/>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/board_and_cards_space"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/gameBoardMiddleSpace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/board_and_cards_space"
+        android:layout_marginBottom="@dimen/board_and_cards_space">
 
         <GridLayout
             android:id="@+id/gameBoardGrid"
@@ -61,7 +61,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/redstudent"
             android:scaleType="centerCrop"
-            android:onClick="btn1"/>
+            android:onClick="btn1"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn2"
@@ -73,7 +74,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/redstudent"
             android:scaleType="centerCrop"
-            android:onClick="btn2"/>
+            android:onClick="btn2"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn3"
@@ -85,7 +87,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/redmaster"
             android:scaleType="centerCrop"
-            android:onClick="btn3"/>
+            android:onClick="btn3"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn4"
@@ -97,7 +100,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/redstudent"
             android:scaleType="centerCrop"
-            android:onClick="btn4"/>
+            android:onClick="btn4"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn5"
@@ -109,7 +113,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/redstudent"
             android:scaleType="centerCrop"
-            android:onClick="btn5"/>
+            android:onClick="btn5"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn6"
@@ -121,7 +126,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn6"/>
+            android:onClick="btn6"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn7"
@@ -133,7 +139,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn7"/>
+            android:onClick="btn7"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn8"
@@ -145,7 +152,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn8"/>
+            android:onClick="btn8"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn9"
@@ -157,7 +165,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn9"/>
+            android:onClick="btn9"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn10"
@@ -169,7 +178,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn10"/>
+            android:onClick="btn10"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn11"
@@ -181,7 +191,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn11"/>
+            android:onClick="btn11"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn12"
@@ -193,7 +204,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn12"/>
+            android:onClick="btn12"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn13"
@@ -205,7 +217,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn13"/>
+            android:onClick="btn13"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn14"
@@ -217,7 +230,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn14"/>
+            android:onClick="btn14"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn15"
@@ -229,7 +243,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn15"/>
+            android:onClick="btn15"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn16"
@@ -241,7 +256,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn16"/>
+            android:onClick="btn16"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn17"
@@ -253,7 +269,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn17"/>
+            android:onClick="btn17"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn18"
@@ -265,7 +282,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn18"/>
+            android:onClick="btn18"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn19"
@@ -277,7 +295,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn19"/>
+            android:onClick="btn19"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn20"
@@ -289,7 +308,8 @@
             android:scaleType="centerCrop"
             android:background="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
-            android:onClick="btn20"/>
+            android:onClick="btn20"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn21"
@@ -301,7 +321,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/bluestudent"
             android:scaleType="centerCrop"
-            android:onClick="btn21"/>
+            android:onClick="btn21"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn22"
@@ -313,7 +334,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/bluestudent"
             android:scaleType="centerCrop"
-            android:onClick="btn22"/>
+            android:onClick="btn22"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn23"
@@ -325,7 +347,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/bluemaster"
             android:scaleType="centerCrop"
-            android:onClick="btn23"/>
+            android:onClick="btn23"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn24"
@@ -337,7 +360,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/bluestudent"
             android:scaleType="centerCrop"
-            android:onClick="btn24"/>
+            android:onClick="btn24"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/btn25"
@@ -349,7 +373,8 @@
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/bluestudent"
             android:scaleType="centerCrop"
-            android:onClick="btn25"/>
+            android:onClick="btn25"
+            android:contentDescription="@string/desc"/>
 
     </GridLayout>
 
@@ -367,7 +392,8 @@
                 android:background="@color/background_color"
                 android:padding="@dimen/profile_picture_border_padding"
                 android:rotation="180"
-                android:src="@mipmap/redpanda" />
+                android:src="@mipmap/redpanda"
+                android:contentDescription="@string/desc"/>
 
             <ImageButton
                 android:id="@+id/middleCard"
@@ -377,24 +403,22 @@
                 android:layout_marginBottom="@dimen/middle_card_margin_top"
                 android:rotation="270"
                 android:scaleType="centerCrop"
-                android:background="@mipmap/cardtemplate" />
+                android:background="@mipmap/cardtemplate"
+                android:contentDescription="@string/desc"/>
 
             <ImageView
                 android:id="@+id/profilePicture2"
                 android:layout_width="@dimen/profile_picture_size"
                 android:layout_height="@dimen/profile_picture_size"
-                android:layout_marginLeft="@dimen/profile_picture_margin_left"
+                android:layout_marginStart="@dimen/profile_picture_margin_left"
                 android:background="@color/background_color"
                 android:padding="@dimen/profile_picture_border_padding"
-                android:src="@mipmap/seagull" />
+                android:src="@mipmap/seagull"
+                android:contentDescription="@string/desc"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/board_and_cards_space"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/player2Cards"
@@ -407,7 +431,8 @@
             android:layout_height="@dimen/card_height"
             android:background="@mipmap/cardtemplate"
             android:scaleType="fitXY"
-            android:onClick="player2Card1"/>
+            android:onClick="player2Card1"
+            android:contentDescription="@string/desc"/>
 
         <ImageButton
             android:id="@+id/player2Card2"
@@ -416,7 +441,8 @@
             android:layout_marginStart="@dimen/card_margin"
             android:background="@mipmap/cardtemplate"
             android:scaleType="fitXY"
-            android:onClick="player2Card2"/>
+            android:onClick="player2Card2"
+            android:contentDescription="@string/desc"/>
 
     </LinearLayout>
 </LinearLayout>
