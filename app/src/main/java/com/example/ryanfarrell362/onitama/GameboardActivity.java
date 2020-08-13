@@ -223,20 +223,32 @@ public class GameboardActivity extends AppCompatActivity {
         resetBoard();
         boardTiles [tileSelectedXOld][tileSelectedYOld].setBackgroundResource(R.color.highlight);
 
+        // Retrieve the moves from the card selected and put them into separate x and y axis arrays
         int[] xMoves = cardSelected.getXMoves();
         int[] yMoves = cardSelected.getYMoves();
 
+        // Multiply all values by -1 to flip them if it's red's turn
+        if (turn) {
+            for (int i = 0; i < xMoves.length; i ++) {
+                xMoves [i] *= - 1;
+                yMoves [i] *= - 1;
+            }
+        }
+
+        // Then all valid moves are determined and highlighted
         for (int x = 0; x < cardSelected.getXMoves().length; x++) {
-            if (turn) {
-                if (tileSelectedXOld + (xMoves[x] * -1) < 5 && tileSelectedYOld + (yMoves[x] * -1) < 5 && tileSelectedXOld + (xMoves[x] * -1) >= 0 && tileSelectedYOld + (yMoves[x] * -1) >= 0 && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redstudent" && boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].getTag() != "redmaster") {
-                    boardTiles[tileSelectedXOld + (xMoves[x] * -1)][tileSelectedYOld + (yMoves[x] * -1)].setBackgroundResource(R.color.highlight);
-                    isTileSelected = true;
-                }
-            } else {
-                if (tileSelectedXOld + xMoves[x] < 5 && tileSelectedYOld + yMoves[x] < 5 && tileSelectedXOld + xMoves[x] >= 0 && tileSelectedYOld + yMoves[x] >= 0 && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluestudent" && boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].getTag() != "bluemaster") {
-                    boardTiles[tileSelectedXOld + xMoves[x]][tileSelectedYOld + yMoves[x]].setBackgroundResource(R.color.highlight);
-                    isTileSelected = true;
-                }
+            // Determine the x and y coordinate of the move beforehand to de-clutter the if statement
+            int newX = tileSelectedXOld + xMoves [x];
+            int newY = tileSelectedYOld + yMoves [x];
+
+            // Finally check which squares are valid to move to and highlight them
+            if (turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "redstudent" && boardTiles[newX][newY].getTag() != "redmaster")) {
+                boardTiles[newX][newY].setBackgroundResource(R.color.highlight);
+                isTileSelected = true;
+            }
+            else if (!turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "bluestudent" && boardTiles[newX][newY].getTag() != "bluemaster")) {
+                boardTiles[newX][newY].setBackgroundResource(R.color.highlight);
+                isTileSelected = true;
             }
         }
     }
