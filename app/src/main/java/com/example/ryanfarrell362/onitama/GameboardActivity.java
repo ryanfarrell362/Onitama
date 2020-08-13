@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameboardActivity extends AppCompatActivity {
@@ -242,7 +243,7 @@ public class GameboardActivity extends AppCompatActivity {
 
     public void movePiece() {
         if (turn) {
-            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
+            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
                 if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redstudent") {
                     boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redstudent);
                     boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redstudent");
@@ -263,7 +264,7 @@ public class GameboardActivity extends AppCompatActivity {
                 resetBoard();
             }
         } else {
-            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
+            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
                 if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluestudent") {
                     boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluestudent);
                     boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluestudent");
@@ -459,7 +460,7 @@ public class GameboardActivity extends AppCompatActivity {
 
     // Performed whenever a button on the gameboard is pressed when valid
     public void buttonAction (int x, int y) {
-        if (boardTiles[x][y].getBackground().getConstantState() == getResources().getDrawable(R.color.highlight).getConstantState()) {
+        if (boardTiles[x][y].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState()) {
             if (!isTileSelected) {
                 tileSelectedXOld = x;
                 tileSelectedYOld = y;
