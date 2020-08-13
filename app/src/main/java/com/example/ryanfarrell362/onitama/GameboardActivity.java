@@ -14,18 +14,6 @@ import java.util.Random;
 
 public class GameboardActivity extends AppCompatActivity {
 
-    static Card cardSelected;
-    static int cardSelectedInt;
-
-    static int tileSelectedXOld;
-    static int tileSelectedYOld;
-
-    static int tileSelectedXNew;
-    static int tileSelectedYNew;
-
-    static boolean isCardSelected = false;
-    static boolean isTileSelected = false;
-
     // Cards
     public static ArrayList<Card> cards = new ArrayList<>(); // For choosing the cards to be in the game
     public static Card[] gameCards = new Card[5]; // For storing the information of those cards
@@ -36,36 +24,20 @@ public class GameboardActivity extends AppCompatActivity {
     // Game Pieces
     public static int blueStudentID;
     public static int blueMasterID;
-
     public static int redStudentID;
     public static int redMasterID;
 
     // Game Board
     public static boolean turn = false;
     public static int gameOver = 0;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameboard);
-
-        // Game Pieces (Might not be needed)
-        blueStudentID = getResources().getIdentifier("bluestudent", "mipmap", getPackageName());
-        blueMasterID = getResources().getIdentifier("bluemaster", "mipmap", getPackageName());
-
-        redStudentID = getResources().getIdentifier("redstudent", "mipmap", getPackageName());
-        redMasterID = getResources().getIdentifier("redmaster", "mipmap", getPackageName());
-
-        // Game Initialization
-        cardInitialization(cards); // Setup cards
-        cardDealer(cards, gameCards, gameCardIDs); // Deal out cards
-        tileAssigner(boardTiles); // Fills 2D array of board tiles
-        turn = firstTurn(gameCards); // Determine who goes first
-
-        gameOver = 0; // Set variable to default state as the game has just started
-
-        assignTurn();
-    }
+    static Card cardSelected;
+    static int cardSelectedInt;
+    static int tileSelectedXOld;
+    static int tileSelectedYOld;
+    static int tileSelectedXNew;
+    static int tileSelectedYNew;
+    static boolean isCardSelected = false;
+    static boolean isTileSelected = false;
 
     // Creates the card objects then shuffles them into the deck
     public static void cardInitialization(ArrayList<Card> cards) {
@@ -92,6 +64,29 @@ public class GameboardActivity extends AppCompatActivity {
         cards.add(new Card("Eel", new int[]{-1, 1, 0}, new int[]{-1, -1, 1}, 'b'));
         cards.add(new Card("Boar", new int[]{0, -1, 0}, new int[]{-1, 0, 1}, 'r'));
         cards.add(new Card("Horse", new int[]{0, -1, 1}, new int[]{-1, 0, 0}, 'r'));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gameboard);
+
+        // Game Pieces (Might not be needed)
+        blueStudentID = getResources().getIdentifier("bluestudent", "mipmap", getPackageName());
+        blueMasterID = getResources().getIdentifier("bluemaster", "mipmap", getPackageName());
+
+        redStudentID = getResources().getIdentifier("redstudent", "mipmap", getPackageName());
+        redMasterID = getResources().getIdentifier("redmaster", "mipmap", getPackageName());
+
+        // Game Initialization
+        cardInitialization(cards); // Setup cards
+        cardDealer(cards, gameCards, gameCardIDs); // Deal out cards
+        tileAssigner(boardTiles); // Fills 2D array of board tiles
+        turn = firstTurn(gameCards); // Determine who goes first
+
+        gameOver = 0; // Set variable to default state as the game has just started
+
+        assignTurn();
     }
 
     // Generates the 5 cards which will be used for a match
@@ -206,7 +201,7 @@ public class GameboardActivity extends AppCompatActivity {
 
     // Once a card has been selected, the board is scanned for all of a player's pieces which can be moved and highlights them
     public void tileScan() {
-        resetBoard ();
+        resetBoard();
 
         for (ImageButton[] boardTile : boardTiles) {
             for (ImageButton imageButton : boardTile) {
@@ -221,7 +216,7 @@ public class GameboardActivity extends AppCompatActivity {
     public void moveScan() {
         // After selecting a piece to move, the board is reset to its original colour and only the selected piece is highlighted
         resetBoard();
-        boardTiles [tileSelectedXOld][tileSelectedYOld].setBackgroundResource(R.color.highlight);
+        boardTiles[tileSelectedXOld][tileSelectedYOld].setBackgroundResource(R.color.highlight);
 
         // Retrieve the moves from the card selected and put them into separate x and y axis arrays
         int[] xMoves = cardSelected.getXMoves();
@@ -235,19 +230,18 @@ public class GameboardActivity extends AppCompatActivity {
             // Multiply by -1 to flip if it's red's turn
             if (turn) {
                 // Determine the x and y coordinate of the move beforehand to de-clutter the if statement
-                newX = tileSelectedXOld + xMoves [x] * -1;
-                newY = tileSelectedYOld + yMoves [x] * -1;
+                newX = tileSelectedXOld + xMoves[x] * -1;
+                newY = tileSelectedYOld + yMoves[x] * -1;
             } else {
-                newX = tileSelectedXOld + xMoves [x];
-                newY = tileSelectedYOld + yMoves [x];
+                newX = tileSelectedXOld + xMoves[x];
+                newY = tileSelectedYOld + yMoves[x];
             }
 
             // Finally check which squares are valid to move to and highlight them
             if (turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "redstudent" && boardTiles[newX][newY].getTag() != "redmaster")) {
                 boardTiles[newX][newY].setBackgroundResource(R.color.highlight);
                 isTileSelected = true;
-            }
-            else if (!turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "bluestudent" && boardTiles[newX][newY].getTag() != "bluemaster")) {
+            } else if (!turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "bluestudent" && boardTiles[newX][newY].getTag() != "bluemaster")) {
                 boardTiles[newX][newY].setBackgroundResource(R.color.highlight);
                 isTileSelected = true;
             }
@@ -413,34 +407,34 @@ public class GameboardActivity extends AppCompatActivity {
 
     // Tile Listeners
 
-    public void btn1(View view) { buttonAction (0, 0); }
-    public void btn2(View view) { buttonAction (0, 1); }
-    public void btn3(View view) { buttonAction (0, 2); }
-    public void btn4(View view) { buttonAction (0, 3); }
-    public void btn5(View view) { buttonAction (0, 4); }
-    public void btn6(View view) { buttonAction (1, 0); }
-    public void btn7(View view) { buttonAction (1, 1); }
-    public void btn8(View view) { buttonAction (1, 2); }
-    public void btn9(View view) { buttonAction (1, 3); }
-    public void btn10(View view) { buttonAction (1, 4); }
-    public void btn11(View view) { buttonAction (2, 0); }
-    public void btn12(View view) { buttonAction (2, 1); }
-    public void btn13(View view) { buttonAction (2, 2); }
-    public void btn14(View view) { buttonAction (2, 3); }
-    public void btn15(View view) { buttonAction (2, 4); }
-    public void btn16(View view) { buttonAction (3, 0); }
-    public void btn17(View view) { buttonAction (3, 1); }
-    public void btn18(View view) { buttonAction (3, 2); }
-    public void btn19(View view) { buttonAction (3, 3); }
-    public void btn20(View view) { buttonAction (3, 4); }
-    public void btn21(View view) { buttonAction (4, 0); }
-    public void btn22(View view) { buttonAction (4, 1); }
-    public void btn23(View view) { buttonAction (4, 2); }
-    public void btn24(View view) { buttonAction (4, 3); }
-    public void btn25(View view) { buttonAction (4, 4); }
+    public void btn1(View view) { buttonAction(0, 0); }
+    public void btn2(View view) { buttonAction(0, 1); }
+    public void btn3(View view) { buttonAction(0, 2); }
+    public void btn4(View view) { buttonAction(0, 3); }
+    public void btn5(View view) { buttonAction(0, 4); }
+    public void btn6(View view) { buttonAction(1, 0); }
+    public void btn7(View view) { buttonAction(1, 1); }
+    public void btn8(View view) { buttonAction(1, 2); }
+    public void btn9(View view) { buttonAction(1, 3); }
+    public void btn10(View view) { buttonAction(1, 4); }
+    public void btn11(View view) { buttonAction(2, 0); }
+    public void btn12(View view) { buttonAction(2, 1); }
+    public void btn13(View view) { buttonAction(2, 2); }
+    public void btn14(View view) { buttonAction(2, 3); }
+    public void btn15(View view) { buttonAction(2, 4); }
+    public void btn16(View view) { buttonAction(3, 0); }
+    public void btn17(View view) { buttonAction(3, 1); }
+    public void btn18(View view) { buttonAction(3, 2); }
+    public void btn19(View view) { buttonAction(3, 3); }
+    public void btn20(View view) { buttonAction(3, 4); }
+    public void btn21(View view) { buttonAction(4, 0); }
+    public void btn22(View view) { buttonAction(4, 1); }
+    public void btn23(View view) { buttonAction(4, 2); }
+    public void btn24(View view) { buttonAction(4, 3); }
+    public void btn25(View view) { buttonAction(4, 4); }
 
     // Performed whenever a card is selected
-    public void cardAction (int x) {
+    public void cardAction(int x) {
         cardSelected = gameCards[x];
         cardSelectedInt = x;
         isTileSelected = false;
@@ -449,7 +443,7 @@ public class GameboardActivity extends AppCompatActivity {
     }
 
     // Performed whenever a button on the gameboard is pressed when valid
-    public void buttonAction (int x, int y) {
+    public void buttonAction(int x, int y) {
         if (boardTiles[x][y].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState()) {
             if (!isTileSelected) {
                 tileSelectedXOld = x;
