@@ -227,19 +227,20 @@ public class GameboardActivity extends AppCompatActivity {
         int[] xMoves = cardSelected.getXMoves();
         int[] yMoves = cardSelected.getYMoves();
 
-        // Multiply all values by -1 to flip them if it's red's turn
-        if (turn) {
-            for (int i = 0; i < xMoves.length; i ++) {
-                xMoves [i] *= - 1;
-                yMoves [i] *= - 1;
-            }
-        }
+        int newX;
+        int newY;
 
         // Then all valid moves are determined and highlighted
         for (int x = 0; x < cardSelected.getXMoves().length; x++) {
-            // Determine the x and y coordinate of the move beforehand to de-clutter the if statement
-            int newX = tileSelectedXOld + xMoves [x];
-            int newY = tileSelectedYOld + yMoves [x];
+            // Multiply by -1 to flip if it's red's turn
+            if (turn) {
+                // Determine the x and y coordinate of the move beforehand to de-clutter the if statement
+                newX = tileSelectedXOld + xMoves [x] * -1;
+                newY = tileSelectedYOld + yMoves [x] * -1;
+            } else {
+                newX = tileSelectedXOld + xMoves [x];
+                newY = tileSelectedYOld + yMoves [x];
+            }
 
             // Finally check which squares are valid to move to and highlight them
             if (turn && (newX < 5 && newY < 5 && newX >= 0 && newY >= 0 && boardTiles[newX][newY].getTag() != "redstudent" && boardTiles[newX][newY].getTag() != "redmaster")) {
@@ -253,60 +254,44 @@ public class GameboardActivity extends AppCompatActivity {
         }
     }
 
+    // After a move has been selected, check the validity of it then perform the move
     public void movePiece() {
-        if (turn) {
-            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
-                if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redstudent") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redstudent);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redstudent");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                } else if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redmaster") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redmaster);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redmaster");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                }
-
-                turn = false;
-            } else {
-                isTileSelected = false;
-                resetBoard();
+        // Check if the selected tile is highlighted
+        if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
+            // Then check which piece is being moved and perform the move
+            if (turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redstudent")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redstudent);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redstudent");
+            } else if (turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "redmaster")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.redmaster);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("redmaster");
+            } else if (!turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluestudent")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluestudent);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluestudent");
+            } else if (!turn && (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluemaster")) {
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluemaster);
+                boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluemaster");
             }
+
+            // Then remove the moved piece form its old position
+            boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
+            boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
+
+            // Now it's the other player's turn
+            turn = !turn;
         } else {
-            if (boardTiles[tileSelectedXNew][tileSelectedYNew].getBackground().getConstantState() == Objects.requireNonNull(getDrawable(R.color.highlight)).getConstantState() && boardTiles[tileSelectedXOld][tileSelectedYOld] != boardTiles[tileSelectedXNew][tileSelectedYNew]) {
-                if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluestudent") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluestudent);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluestudent");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                } else if (boardTiles[tileSelectedXOld][tileSelectedYOld].getTag() == "bluemaster") {
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setImageResource(R.mipmap.bluemaster);
-                    boardTiles[tileSelectedXNew][tileSelectedYNew].setTag("bluemaster");
-
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setImageResource(android.R.color.transparent);
-                    boardTiles[tileSelectedXOld][tileSelectedYOld].setTag("");
-                }
-
-                turn = true;
-            } else {
-                isTileSelected = false;
-                resetBoard();
-            }
+            // If not a valid move, redo and let the player select a different move
+            isTileSelected = false;
         }
 
-        for (ImageButton[] boardTile : boardTiles) {
-            for (ImageButton imageButton : boardTile) {
-                imageButton.setBackgroundResource(R.color.tile_color);
-            }
-        }
+        // Finally get rid of all the highlighted tiles
+        resetBoard();
 
+        // And reset the turn for the next player
         if (isTileSelected && isCardSelected) {
             isCardSelected = false;
             isTileSelected = false;
+            // Then swap the card used to make the move with the middle card
             cardSwap();
         }
     }
@@ -404,41 +389,25 @@ public class GameboardActivity extends AppCompatActivity {
 
     public void player1Card1(View view) {
         if (turn) {
-            cardSelected = gameCards[0];
-            cardSelectedInt = 0;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
+            cardAction(0);
         }
     }
 
     public void player1Card2(View view) {
         if (turn) {
-            cardSelected = gameCards[1];
-            cardSelectedInt = 1;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
+            cardAction(1);
         }
     }
 
     public void player2Card1(View view) {
         if (!turn) {
-            cardSelected = gameCards[2];
-            cardSelectedInt = 2;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
+            cardAction(2);
         }
     }
 
     public void player2Card2(View view) {
         if (!turn) {
-            cardSelected = gameCards[3];
-            cardSelectedInt = 3;
-            isTileSelected = false;
-            isCardSelected = true;
-            tileScan();
+            cardAction(3);
         }
     }
 
@@ -469,6 +438,15 @@ public class GameboardActivity extends AppCompatActivity {
     public void btn23(View view) { buttonAction (4, 2); }
     public void btn24(View view) { buttonAction (4, 3); }
     public void btn25(View view) { buttonAction (4, 4); }
+
+    // Performed whenever a card is selected
+    public void cardAction (int x) {
+        cardSelected = gameCards[x];
+        cardSelectedInt = x;
+        isTileSelected = false;
+        isCardSelected = true;
+        tileScan();
+    }
 
     // Performed whenever a button on the gameboard is pressed when valid
     public void buttonAction (int x, int y) {
