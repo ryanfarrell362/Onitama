@@ -34,6 +34,6 @@
     <dimen name="profile_picture_border_padding">5dp</dimen>
 
     <dimen name="board_and_cards_space">40dp</dimen>
-    <dimen name="top_padding">60dp</dimen>
+    <dimen name="top_padding">35dp</dimen>
 
 </resources>
