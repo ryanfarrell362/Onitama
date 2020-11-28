@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/top_padding">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
 
     <LinearLayout
         android:id="@+id/player1Cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/top_padding"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        tools:ignore="RtlSymmetry">
+        android:paddingTop="@dimen/top_padding">
 
         <ImageButton
             android:id="@+id/player1Card1"
@@ -48,9 +46,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/board_and_cards_space"
-        android:layout_marginBottom="@dimen/board_and_cards_space"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        tools:ignore="RtlSymmetry">
+        android:layout_marginBottom="@dimen/board_and_cards_space">
 
         <GridLayout
             android:id="@+id/gameBoardGrid"
@@ -429,9 +425,7 @@
     <LinearLayout
         android:id="@+id/player2Cards"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        tools:ignore="RtlSymmetry">
+        android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/player2Card1"

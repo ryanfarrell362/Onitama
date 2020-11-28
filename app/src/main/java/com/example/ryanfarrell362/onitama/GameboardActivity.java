@@ -4,19 +4,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class GameboardActivity extends AppCompatActivity {
-
     // Cards
     public static ArrayList<Card> cards = new ArrayList<>(); // For choosing the cards to be in the game
     public static Card[] gameCards = new Card[5]; // For storing the information of those cards
@@ -73,14 +67,7 @@ public class GameboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_gameboard);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         blueStudentID = getResources().getIdentifier("bluestudent", "mipmap", getPackageName());
         blueMasterID = getResources().getIdentifier("bluemaster", "mipmap", getPackageName());
@@ -390,7 +377,6 @@ public class GameboardActivity extends AppCompatActivity {
 // Button Listeners
 
     // Card Listeners
-
     public void player1Card1(View view) {
         if (turn) {
             cardAction(0);
@@ -416,7 +402,6 @@ public class GameboardActivity extends AppCompatActivity {
     }
 
     // Tile Listeners
-
     public void btn1(View view) { buttonAction(0, 0); }
     public void btn2(View view) { buttonAction(0, 1); }
     public void btn3(View view) { buttonAction(0, 2); }

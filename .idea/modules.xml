@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-Onitama.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-Onitama.iml" group="Onitama" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects-Onitama-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects-Onitama-app.iml" group="Onitama/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Me-AndroidStudioProjects-Onitama.iml" filepath="$PROJECT_DIR$/.idea/modules/Me-AndroidStudioProjects-Onitama.iml" group="Onitama" />
       <module fileurl="file://$PROJECT_DIR$/Onitama.iml" filepath="$PROJECT_DIR$/Onitama.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Onitama-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Onitama-app.iml" group="Onitama/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
