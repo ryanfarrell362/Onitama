@@ -10,7 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/top_padding">
 
-
     <LinearLayout
         android:id="@+id/player1Cards"
         android:layout_width="match_parent"
@@ -60,6 +59,7 @@
             android:layout_row="0"
             android:layout_column="0"
             android:background="@color/tile_color"
+            android:backgroundTint="@color/tile_color"
             android:layout_margin="@dimen/tile_margin"
             android:src="@mipmap/redstudent"
             android:scaleType="centerCrop"
